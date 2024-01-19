@@ -8,6 +8,16 @@ Acceptance criteria Due by 1/22:
 •	Input, edit, and delete class details like course name, time, and instructor.
 •	Display a list or simple view of all classes.
 
+### 1/19/2024 - KP
+Started this. Came up with backend object for storing course details. Needs elaboration.
+
+Forseable problem: Linking it with to-do list and assignments.
+
+![Potential Solution](https://github.gatech.edu/kpammi3/CSProject1/blob/4e47b3d0a15f3c64c072aa47eb627f54e4fb5578/%20ScreenshotsForProgress/potentialStorageOption.png)
+
+
+
+
 Acceptance criteria Due by 1/24:
 •	Add, edit, and delete assignment details including title, due date, and associated class.
 •	List assignments with sorting options by due date or course.
