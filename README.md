@@ -15,6 +15,8 @@ Forseable problem: Linking it with to-do list and assignments.
 
 ![Potential Solution](https://github.gatech.edu/kpammi3/CSProject1/blob/4e47b3d0a15f3c64c072aa47eb627f54e4fb5578/%20ScreenshotsForProgress/potentialStorageOption.png)
 
+### 1/21/2024 - KP
+Created data storage and started visuals. Still needs updates.
 
 
 
