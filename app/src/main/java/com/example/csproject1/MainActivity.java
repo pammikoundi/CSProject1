@@ -1,8 +1,11 @@
 package com.example.csproject1;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.fragment.NavHostFragment;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,81 +17,46 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText className, class_timings, classInstructor,classDetails;
-    Button submit,update,delete;
+    Button nextPage;
+    TextView class_View=findViewById(R.id.classView);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        DBHelper DB = new DBHelper(this);
+        //Cursor res = DB.getdata();
+        //StringBuffer buffer = new StringBuffer();
+/*
+        if (res.getCount() == 0) {
+            Toast.makeText(MainActivity.this, "NoEntries", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            while (res.moveToNext()) {
+                buffer.append("Class Name: " + res.getString(0) + "\n");
+                buffer.append("Class Instructor: " + res.getString(1) + "\n");
+                buffer.append("Class Details: " + res.getString(2) + "\n\n");
+            }
+            class_View.setText(buffer.toString());
+        }
+
+ */
         setContentView(R.layout.activity_main);
         CalendarView calendarView = findViewById(R.id.calendarView);
-        final TextView classList = findViewById(R.id.classView);
-        className=findViewById(R.id.class_name);
-        classInstructor=findViewById(R.id.class_instructor);
-        classDetails=findViewById(R.id.class_details);
+        nextPage=findViewById(R.id.buttonToNextScreen);
 
-        submit=findViewById(R.id.btnSubmit);
-        update=findViewById(R.id.btnUpdate);
-        delete=findViewById(R.id.btnDelete);
-
-        DBHelper DB = new DBHelper(this);
-
-        submit.setOnClickListener(new View.OnClickListener() {
+        /*
+        nextPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String classNameTXT= className.getText().toString();
-                String classInstructorTXT= classInstructor.getText().toString();
-                String classDetailsTXT= classDetails.getText().toString();
-
-                boolean checkinsertdata = DB.insertdata(classNameTXT,classInstructorTXT,classDetailsTXT);
-
-                if(checkinsertdata==true){
-                    Toast.makeText(MainActivity.this,"New Entry Inserted",Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(MainActivity.this,"New Entry Failed to Inserted",Toast.LENGTH_SHORT).show();
+                    MainActivity.actionMainActivityToClassPage action = MainActivity.actionMainActivityToClassPage();
+                    NavHostFragment.findNavController(FirstFragment.this).navigate(action);
                 }
-
-            }
         });
-        update.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String classNameTXT= className.getText().toString();
-                String classInstructorTXT= classInstructor.getText().toString();
-                String classDetailsTXT= classDetails.getText().toString();
-
-                boolean checkupdatedata = DB.updatedata(classNameTXT,classInstructorTXT,classDetailsTXT);
-
-                if(checkupdatedata==true){
-                    Toast.makeText(MainActivity.this,"Entry Updated",Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(MainActivity.this,"Entry Failed to Update",Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        });
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String classNameTXT= className.getText().toString();
-                String classInstructorTXT= classInstructor.getText().toString();
-                String classDetailsTXT= classDetails.getText().toString();
-
-                boolean checkdeletedata = DB.deletedata(classNameTXT);
-
-                if(checkdeletedata==true){
-                    Toast.makeText(MainActivity.this,"Deleted Data",Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(MainActivity.this,"Data Failed To Delete",Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        });
-
-
+*/
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                classList.setText((month+1)+", "+dayOfMonth+" "+ year);
+              // class_View.setText(buffer.toString());
+
             }
         });
     }

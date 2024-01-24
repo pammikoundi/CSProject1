@@ -24,58 +24,10 @@
             android:layout_height="wrap_content"
             />
 
-        <EditText
-            android:id="@+id/class_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Class"
-            android:textSize="24dp"
-            android:inputType="textAutoComplete"
-            />
-        <EditText
-            android:id="@+id/class_timings"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Class timings"
-            android:textSize="24dp"
-            android:inputType="time"
-            />
-        <EditText
-            android:id="@+id/class_instructor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Class Instructor"
-            android:textSize="24dp"
-            android:inputType="textAutoComplete"
-            />
-        <EditText
-            android:id="@+id/class_details"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Class Details"
-            android:textSize="24dp"
-            android:inputType="textAutoComplete"
-            />
         <Button
+            android:id="@+id/buttonToNextScreen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btnSubmit"
-            android:text="Submit"
-            android:textSize="24dp"
-            />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnUpdate"
-            android:text="Update"
-            android:textSize="24dp"
-            />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnDelete"
-            android:text="Delete"
-            android:textSize="24dp"
-            />
-</LinearLayout>
+            android:text="Button" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
