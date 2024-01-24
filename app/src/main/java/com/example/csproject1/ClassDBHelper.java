@@ -6,10 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import androidx.annotation.Nullable;
-
-public class DBHelper extends SQLiteOpenHelper {
-    public DBHelper(Context context) {
+public class ClassDBHelper extends SQLiteOpenHelper {
+    public ClassDBHelper(Context context) {
         super(context, "Class_details.db", null, 1);
     }
 
@@ -23,7 +21,7 @@ public class DBHelper extends SQLiteOpenHelper {
         DB.execSQL("drop Table if exists Class_details");
     }
 
-    public boolean insertdata(String className, String classInstructor, String classDetails) {
+    public boolean insertData(String className, String classInstructor, String classDetails) {
         SQLiteDatabase DB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("className", className);
@@ -31,14 +29,10 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("classDetails", classDetails);
 
         long result = DB.insert("Class_details", null, contentValues);
-        if (result == 1) {
-            return false;
-        } else {
-            return true;
-        }
+        return result != 1;
     }
 
-    public boolean updatedata(String className, String classInstructor, String classDetails) {
+    public boolean updateData(String className, String classInstructor, String classDetails) {
         SQLiteDatabase DB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("className", className);
@@ -48,39 +42,34 @@ public class DBHelper extends SQLiteOpenHelper {
 
         if (cursor.getCount() > 0) {
 
-            long result = DB.update("Class_details", contentValues,"className =?" ,new String[] {className});
-            if (result == 1) {
-                return false;
-            } else {
-                return true;
-            }
+            long result = DB.update("Class_details", contentValues, "className =?", new String[]{className});
+            cursor.close();
+            return result != 1;
         } else {
+            cursor.close();
             return false;
         }
     }
 
 
-    public boolean deletedata(String className) {
+    public boolean deleteData(String className) {
         SQLiteDatabase DB = this.getWritableDatabase();
         Cursor cursor = DB.rawQuery("Select * from Class_details where className =?", new String[]{className});
 
         if (cursor.getCount() > 0) {
 
-            long result = DB.delete("Class_details", "name=?", new String[] {className});
-            if (result == 1) {
-                return false;
-            } else {
-                return true;
-            }
+            long result = DB.delete("Class_details", "name=?", new String[]{className});
+            cursor.close();
+            return result != 1;
         } else {
+            cursor.close();
             return false;
         }
     }
 
-    public Cursor getdata() {
+    public Cursor getData() {
         SQLiteDatabase DB = this.getWritableDatabase();
-        Cursor cursor = DB.rawQuery("Select * from Class_details", null);
 
-        return cursor;
+        return DB.rawQuery("Select * from Class_details", null);
     }
 }

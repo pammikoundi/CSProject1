@@ -1,26 +1,20 @@
 package com.example.csproject1;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.fragment.NavHostFragment;
-
-import android.database.Cursor;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.database.sqlite.SQLiteDatabase;
-import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
+public class MainActivity extends Fragment {
 
     Button nextPage;
-    TextView class_View=findViewById(R.id.classView);
+    TextView class_View = findViewById(R.id.classView);
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         DBHelper DB = new DBHelper(this);
         //Cursor res = DB.getdata();
@@ -39,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
  */
-        setContentView(R.layout.activity_main);
         CalendarView calendarView = findViewById(R.id.calendarView);
         nextPage=findViewById(R.id.buttonToNextScreen);
 
