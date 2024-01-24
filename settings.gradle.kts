@@ -13,5 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "CSProject1"
+rootProject.name = "CSProjectCalApp"
 include(":app")
+ 

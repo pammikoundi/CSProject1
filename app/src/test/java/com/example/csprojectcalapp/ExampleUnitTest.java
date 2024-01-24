@@ -1,4 +1,4 @@
-package com.example.csproject1;
+package com.example.csprojectcalapp;
 
 import org.junit.Test;
 

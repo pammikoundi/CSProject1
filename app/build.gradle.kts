@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.csproject1"
+    namespace = "com.example.csprojectcalapp"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.csproject1"
+        applicationId = "com.example.csprojectcalapp"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -28,6 +28,9 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        viewBinding = true
     }
 }
 
