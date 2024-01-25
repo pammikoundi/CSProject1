@@ -11,8 +11,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.csprojectcalapp.R;
-
 public class MainActivity extends AppCompatActivity {
 
     Button add;
@@ -57,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
 
                         addCard(
-                                ("Class Name: "+name.getText().toString())+
+                                  ("Class Name: "+name.getText().toString())+
                                         ("\nInstructor: "+instructor.getText().toString())+
                                         ("\nClass Section: "+classSection.getText().toString())+
                                         ("\nClass Location: "+classLocation.getText().toString())+
@@ -84,10 +82,10 @@ public class MainActivity extends AppCompatActivity {
 
         update.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                layout.removeView(view);
-                addDialog.show();
-            }
+                public void onClick(View v) {
+                    layout.removeView(view);
+                    addDialog.show();
+                }
 
         });
 
