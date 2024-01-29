@@ -5,8 +5,8 @@
 Tentative Schedule: Please check off once done and write if in progress
 
 Acceptance criteria Due by 1/22:
-•	Input, edit, and delete class details like course name, time, and instructor.
-•	Display a list or simple view of all classes.
+•	Input, edit, and delete class details like course name, time, and instructor. ✅
+•	Display a list or simple view of all classes. ✅
 
 ### 1/19/2024 - KP
 Started this. Came up with backend object for storing course details. Needs elaboration.
@@ -21,16 +21,16 @@ Created data storage and started visuals. Still needs updates.
 
 
 Acceptance criteria Due by 1/24:
-•	Add, edit, and delete assignment details including title, due date, and associated class.
-•	List assignments with sorting options by due date or course.
+•	Add, edit, and delete assignment details including title, due date, and associated class. ✅
+•	List assignments with sorting options by due date or course. ✅
 
 Acceptance criteria Due by 1/26:
 •	Input details like date, time, and location for exams.
 •	List exams with accessible details.
 
 Acceptance criteria Due by 1/28:
-•	Create and manage to-do lists within the app.
-•	Add, edit, and delete tasks on the to-do list.
+•	Create and manage to-do lists within the app. ✅
+•	Add, edit, and delete tasks on the to-do list. ✅
 
 
 Optional:
