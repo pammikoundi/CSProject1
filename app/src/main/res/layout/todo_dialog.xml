@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp"
+            >
+            <EditText
+                android:id="@+id/assignmentNameEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Assignment Name"
+                android:textSize="20dp"/>
+            <EditText
+                android:id="@+id/assignmentTypeEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Assignment Type"
+                android:textSize="20dp"/>
+            <EditText
+                android:id="@+id/assignmentClassEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Class"
+                android:textSize="20dp"/>
+            <EditText
+                android:id="@+id/assignmentLocationEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Submission Location/ Testing Location"
+                android:textSize="20dp"/>
+            <EditText
+                android:id="@+id/dueDateEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Due Date?"
+                android:textSize="20dp"/>
+            <EditText
+                android:id="@+id/progressEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Progress"
+                android:textSize="20dp"
+                android:inputType="time"
+                />
+            <EditText
+                android:id="@+id/completeEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="End Time"
+                android:textSize="20dp"
+                android:inputType="time"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>
