@@ -17,37 +17,23 @@
         android:layout_marginBottom="10dp"
         android:padding="10dp"
         />
-    <Button
-        android:id="@+id/to_do_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="To Do List"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@id/add"
-        />
-    <Button
-        android:id="@+id/back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Back"
-        android:layout_below="@+id/to_do_list"
-        />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="120dp"
         android:scrollbars="none">
+
         <LinearLayout
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Classes View"
-            android:textSize="50dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="User Select"
+                android:textSize="50dp"/>
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

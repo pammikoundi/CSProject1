@@ -20,11 +20,17 @@ public class MainActivity extends AppCompatActivity {
     Button add, todoButton;
     AlertDialog dialog, updateDialog;
     LinearLayout layout;
-
+    String userName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent(); // gets the previously created intent
+        userName = intent.getStringExtra("userName"); // will return "FirstKeyValue"
+
+
+        Button backButton = findViewById(R.id.back);
 
         add = findViewById(R.id.add);
         todoButton = findViewById(R.id.to_do_list);
@@ -33,6 +39,13 @@ public class MainActivity extends AppCompatActivity {
 
         buildDialog();
         buildUpdateDialog();
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,22 +59,23 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("MainActivity", "To Do List button clicked");
-                navigateToToDoListActivity();
+                navigateToToDoListActivity(null);
             }
         });
 
         DB = new DBHelper(this);
-        showCards();
+        showAllCards();
     }
 
-    private void navigateToToDoListActivity() {
+    private void navigateToToDoListActivity(String className) {
         Intent intent = new Intent(MainActivity.this, ToDoListActivity.class);
+        intent.putExtra("className",className);
         startActivity(intent);
     }
 
-    private void showCards() {
+    private void showAllCards() {
         layout.removeAllViews();
-        Cursor res = DB.getclassdata();
+        Cursor res = DB.getclassdata(userName);
         if (res.getCount() == 0) {
             return;
         }
@@ -81,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void buildUpdateDialog() {
         AlertDialog.Builder updateBuilder = new AlertDialog.Builder(this);
-        View view = getLayoutInflater().inflate(R.layout.dialog, null);
+        View view = getLayoutInflater().inflate(R.layout.class_dialog, null);
 
         final EditText name = view.findViewById(R.id.nameEdit);
         final EditText instructor = view.findViewById(R.id.instructorEdit);
@@ -107,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
 
                         boolean checkUpdateData = DB.updateclassdata(nameText, instructorText, classSectionText, classLocationText, repeatText, startTimeText, endTimeText);
                         if (checkUpdateData) {
-                            showCards();
+                            showAllCards();
                             Toast.makeText(MainActivity.this, "Entry Updated", Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(MainActivity.this, "Could Not Find Class to Update", Toast.LENGTH_SHORT).show();
@@ -125,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void buildDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        View view = getLayoutInflater().inflate(R.layout.dialog, null);
+        View view = getLayoutInflater().inflate(R.layout.class_dialog, null);
 
         final EditText name = view.findViewById(R.id.nameEdit);
         final EditText instructor = view.findViewById(R.id.instructorEdit);
@@ -140,6 +154,8 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+
+                        String userActivity = userName;
                         String nameText = name.getText().toString();
                         String instructorText = instructor.getText().toString();
                         String classSectionText = classSection.getText().toString();
@@ -148,9 +164,9 @@ public class MainActivity extends AppCompatActivity {
                         String startTimeText = startTime.getText().toString();
                         String endTimeText = endTime.getText().toString();
 
-                        boolean checkInsertData = DB.insertclassdata(nameText, instructorText, classSectionText, classLocationText, repeatText, startTimeText, endTimeText);
+                        boolean checkInsertData = DB.insertclassdata(nameText,userActivity,instructorText, classSectionText, classLocationText, repeatText, startTimeText, endTimeText);
                         if (checkInsertData) {
-                            showCards();
+                            showAllCards();
                             Toast.makeText(MainActivity.this, "New Entry Inserted", Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(MainActivity.this, "This class may already exist", Toast.LENGTH_SHORT).show();
@@ -168,15 +184,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addCard(String name,String instructor, String class_section, String class_location, String repeat, String start_time, String end_time) {
-        final View view = getLayoutInflater().inflate(R.layout.card, null);
+        final View view = getLayoutInflater().inflate(R.layout.class_card, null);
         TextView nameView = view.findViewById(R.id.classInfo);
         Button delete = view.findViewById(R.id.btnDelete);
         Button update = view.findViewById(R.id.btnUpdate);
+        Button assignments = view.findViewById(R.id.btnAssignments);
 
         String cardText = String.format("Class Name: %s\nInstructor: %s\nClass Section: %s\nClass Location: %s\nRepeat: %s\nStart Time: %s\nEnd Time: %s",
                 name, instructor, class_section, class_location, repeat, start_time, end_time);
 
         nameView.setText(cardText);
+
+        assignments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("MainActivity", "To Do List button clicked");
+                navigateToToDoListActivity(name);
+            }
+        });
 
         delete.setOnClickListener(new View.OnClickListener() {
             @Override

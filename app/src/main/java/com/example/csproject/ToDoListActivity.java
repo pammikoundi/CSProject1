@@ -163,7 +163,7 @@ public class ToDoListActivity extends AppCompatActivity {
     }
 
     private void addCard (String assignment_name, String assignment_type, String assignment_class, String assignment_location,String due_date, String progress, String complete){
-        final View view = getLayoutInflater().inflate(R.layout.card, null);
+        final View view = getLayoutInflater().inflate(R.layout.todo_card, null);
         TextView nameView = view.findViewById(R.id.classInfo);
         Button delete = view.findViewById(R.id.btnDelete);
         Button update = view.findViewById(R.id.btnUpdate);

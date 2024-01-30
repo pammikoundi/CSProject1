@@ -25,7 +25,7 @@
                     android:id="@+id/classInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Class Name:\nInstructor\nClassSection\nClassLocation\nRepeat\nStartTime\nEndTime\n\n"
+                    android:text="Assignment Name:\nAssignment Type:\nLocation:\nDue Date:\nProgress:\nComplete:\n\n"
                     android:textColor="@android:color/holo_purple"
                     android:textFontWeight="1000"
                     android:textSize="30dp"/>
@@ -45,10 +45,14 @@
                     android:textSize="24dp"
                     android:text="Delete Existing Data"
                     android:layout_below="@id/btnUpdate"/>
+
                 <CheckBox
                     android:id="@+id/complete"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="-372dp"
+                    android:layout_below="@id/btnDelete"
+                    android:layout_centerHorizontal="true"/>
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
