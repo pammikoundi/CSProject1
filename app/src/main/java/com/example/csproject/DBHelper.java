@@ -127,10 +127,17 @@ public class DBHelper extends SQLiteOpenHelper {
             return false;
         }
     }
-    public Cursor getassignmentdata()
+    public Cursor getallassignmentdata()
     {
         SQLiteDatabase DB = this.getWritableDatabase();
         Cursor cursor = DB.rawQuery("Select * from Assignmentdetails", null);
+        return cursor;
+    }
+
+    public Cursor getassignmentdata(String className)
+    {
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor cursor = DB.rawQuery("Select * from Assignmentdetails where assignment_class=?", new String[]{className});
         return cursor;
     }
 

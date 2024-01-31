@@ -46,13 +46,6 @@
                     android:text="Delete Existing Data"
                     android:layout_below="@id/btnUpdate"/>
 
-                <CheckBox
-                    android:id="@+id/complete"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="-372dp"
-                    android:layout_below="@id/btnDelete"
-                    android:layout_centerHorizontal="true"/>
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>

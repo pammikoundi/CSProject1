@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     Button add, todoButton;
     AlertDialog dialog, updateDialog;
     LinearLayout layout;
-    String userName;
+    String userName, current_class_name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = getIntent(); // gets the previously created intent
         userName = intent.getStringExtra("userName"); // will return "FirstKeyValue"
-
+        current_class_name=null;
 
         Button backButton = findViewById(R.id.back);
 
@@ -36,9 +36,9 @@ public class MainActivity extends AppCompatActivity {
         todoButton = findViewById(R.id.to_do_list);
         layout = findViewById(R.id.container);
 
-
-        buildDialog();
         buildUpdateDialog();
+        buildDialog();
+
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,9 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void buildUpdateDialog() {
         AlertDialog.Builder updateBuilder = new AlertDialog.Builder(this);
-        View view = getLayoutInflater().inflate(R.layout.class_dialog, null);
-
-        final EditText name = view.findViewById(R.id.nameEdit);
+        View view = getLayoutInflater().inflate(R.layout.class_update_dialog, null);
         final EditText instructor = view.findViewById(R.id.instructorEdit);
         final EditText classSection = view.findViewById(R.id.classSectionEdit);
         final EditText classLocation = view.findViewById(R.id.classLocationEdit);
@@ -106,12 +104,10 @@ public class MainActivity extends AppCompatActivity {
         final EditText endTime = view.findViewById(R.id.endTimeEdit);
 
         updateBuilder.setView(view);
-
         updateBuilder.setTitle("Enter Class Information")
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String nameText = name.getText().toString();
                         String instructorText = instructor.getText().toString();
                         String classSectionText = classSection.getText().toString();
                         String classLocationText = classLocation.getText().toString();
@@ -119,7 +115,8 @@ public class MainActivity extends AppCompatActivity {
                         String startTimeText = startTime.getText().toString();
                         String endTimeText = endTime.getText().toString();
 
-                        boolean checkUpdateData = DB.updateclassdata(nameText, instructorText, classSectionText, classLocationText, repeatText, startTimeText, endTimeText);
+                        boolean checkUpdateData = DB.updateclassdata(current_class_name, instructorText, classSectionText, classLocationText, repeatText, startTimeText, endTimeText);
+
                         if (checkUpdateData) {
                             showAllCards();
                             Toast.makeText(MainActivity.this, "Entry Updated", Toast.LENGTH_SHORT).show();
@@ -163,8 +160,9 @@ public class MainActivity extends AppCompatActivity {
                         String repeatText = repeat.getText().toString();
                         String startTimeText = startTime.getText().toString();
                         String endTimeText = endTime.getText().toString();
-
+                        current_class_name=nameText;
                         boolean checkInsertData = DB.insertclassdata(nameText,userActivity,instructorText, classSectionText, classLocationText, repeatText, startTimeText, endTimeText);
+
                         if (checkInsertData) {
                             showAllCards();
                             Toast.makeText(MainActivity.this, "New Entry Inserted", Toast.LENGTH_SHORT).show();
@@ -210,15 +208,24 @@ public class MainActivity extends AppCompatActivity {
                 boolean checkDeleteData = DB.deleteclassdata(name);
                 if (checkDeleteData) {
                     Toast.makeText(MainActivity.this, "Entry Deleted", Toast.LENGTH_SHORT).show();
+
+                    Cursor res = DB.getassignmentdata(name);
+                    if (res.getCount() == 0) {
+                        return;
+                    }
+                    while (res.moveToNext()) {
+                        String assignment_name = res.getString(0);
+                        DB.deleteassignmentdata(assignment_name);
+                    }
                 } else {
                     Toast.makeText(MainActivity.this, "Entry Not Deleted", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                current_class_name=name;
                 updateDialog.show();
             }
         });

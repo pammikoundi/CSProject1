@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,15 +20,19 @@ public class ToDoListActivity extends AppCompatActivity {
     AlertDialog dialog, updateDialog;
     LinearLayout layout;
 
+    String className;
+    String current_assignment_name=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todo_list);
 
+        Intent intent = getIntent(); // gets the previously created intent
+        className = intent.getStringExtra("className"); // will return "FirstKeyValue"
+
         add = findViewById(R.id.add);
         backButton = findViewById(R.id.back);
         layout = findViewById(R.id.container);
-
 
         buildDialog();
         buildUpdateDialog();
@@ -56,7 +59,13 @@ public class ToDoListActivity extends AppCompatActivity {
 
     private void showCards() {
         layout.removeAllViews();
-        Cursor res = DB.getassignmentdata();
+        Cursor res;
+        if(className!=null) {
+             res = DB.getassignmentdata(className);
+        }
+        else {
+            res = DB.getallassignmentdata();
+        }
         if (res.getCount() == 0) {
             return;
         }
@@ -64,23 +73,21 @@ public class ToDoListActivity extends AppCompatActivity {
 
             String assignment_name = res.getString(0);
             String assignment_type = res.getString(1);
-            String assignment_class = res.getString(2);
             String assignment_location = res.getString(3);
             String due_date = res.getString(4);
             String progress = res.getString(5);
             String complete = res.getString(6);
 
-            addCard(assignment_name, assignment_type, assignment_class, assignment_location, due_date, progress, complete);
+            addCard(assignment_name, assignment_type, className, assignment_location, due_date, progress, complete);
         }
+
     }
 
     private void buildUpdateDialog() {
         AlertDialog.Builder updateBuilder = new AlertDialog.Builder(this);
-        View view = getLayoutInflater().inflate(R.layout.todo_dialog, null);
+        View view = getLayoutInflater().inflate(R.layout.todo_update_dialog, null);
 
-        final EditText assignmentNameField = view.findViewById(R.id.assignmentNameEdit);
         final EditText assignmentTypeField = view.findViewById(R.id.assignmentTypeEdit);
-        final EditText assignmentClassField = view.findViewById(R.id.assignmentClassEdit);
         final EditText assignmentLocationField = view.findViewById(R.id.assignmentLocationEdit);
         final EditText dueDateField = view.findViewById(R.id.dueDateEdit);
         final EditText progressField = view.findViewById(R.id.progressEdit);
@@ -92,9 +99,9 @@ public class ToDoListActivity extends AppCompatActivity {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String assignment_name = assignmentNameField.getText().toString();
+                        String assignment_name = current_assignment_name;
                         String assignment_type = assignmentTypeField.getText().toString();
-                        String assignment_class= assignmentClassField.getText().toString();
+                        String assignment_class= className;
                         String assignment_location = assignmentLocationField.getText().toString();
                         String due_date = dueDateField.getText().toString();
                         String progress = progressField.getText().toString();
@@ -124,7 +131,6 @@ public class ToDoListActivity extends AppCompatActivity {
 
         final EditText assignmentNameField = view.findViewById(R.id.assignmentNameEdit);
         final EditText assignmentTypeField = view.findViewById(R.id.assignmentTypeEdit);
-        final EditText assignmentClassField = view.findViewById(R.id.assignmentClassEdit);
         final EditText assignmentLocationField = view.findViewById(R.id.assignmentLocationEdit);
         final EditText dueDateField = view.findViewById(R.id.dueDateEdit);
         final EditText progressField = view.findViewById(R.id.progressEdit);
@@ -137,7 +143,7 @@ public class ToDoListActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         String assignment_name = assignmentNameField.getText().toString();
                         String assignment_type = assignmentTypeField.getText().toString();
-                        String assignment_class= assignmentClassField.getText().toString();
+                        String assignment_class= className;
                         String assignment_location = assignmentLocationField.getText().toString();
                         String due_date = dueDateField.getText().toString();
                         String progress = progressField.getText().toString();
