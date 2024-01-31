@@ -82,12 +82,13 @@ public class MainActivity extends AppCompatActivity {
         while (res.moveToNext()) {
 
             String nameText = res.getString(0);
-            String instructorText = res.getString(1);
-            String classSectionText = res.getString(2);
-            String classLocationText = res.getString(3);
-            String repeatText = res.getString(4);
-            String startTimeText = res.getString(5);
-            String endTimeText = res.getString(6);
+            String UserNameText = res.getString(1);
+            String instructorText = res.getString(2);
+            String classSectionText = res.getString(3);
+            String classLocationText = res.getString(4);
+            String repeatText = res.getString(5);
+            String startTimeText = res.getString(6);
+            String endTimeText = res.getString(7);
 
             addCard(nameText, instructorText, classSectionText, classLocationText, repeatText, startTimeText, endTimeText);
         }
