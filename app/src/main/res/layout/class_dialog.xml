@@ -15,38 +15,38 @@
     >
 
     <EditText
-        android:id="@+id/nameEdit"
+        android:id="@+id/dialog_nameEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Name"
         android:textSize="20dp"
         android:visibility="visible" />
         <EditText
-            android:id="@+id/instructorEdit"
+            android:id="@+id/dialog_instructorEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Instructor"
             android:textSize="20dp"/>
         <EditText
-            android:id="@+id/classSectionEdit"
+            android:id="@+id/dialog_classSectionEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Class Section"
             android:textSize="20dp"/>
         <EditText
-            android:id="@+id/classLocationEdit"
+            android:id="@+id/dialog_classLocationEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Class Location"
             android:textSize="20dp"/>
         <EditText
-            android:id="@+id/repeatEdit"
+            android:id="@+id/dialog_repeatEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Repeat Days?"
             android:textSize="20dp"/>
         <EditText
-            android:id="@+id/startTimeEdit"
+            android:id="@+id/dialog_startTimeEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Start Time"
@@ -54,7 +54,7 @@
             android:inputType="time"
             />
         <EditText
-            android:id="@+id/endTimeEdit"
+            android:id="@+id/dialog_endTimeEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="End Time"

@@ -22,7 +22,7 @@
                 android:padding="10dp">
 
                 <TextView
-                    android:id="@+id/classInfo"
+                    android:id="@+id/card_classInfoText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Class Name:\nInstructor\nClassSection\nClassLocation\nRepeat\nStartTime\nEndTime\n\n"
@@ -31,28 +31,28 @@
                     android:textSize="30dp"/>
 
                 <Button
-                    android:id="@+id/btnAssignments"
+                    android:id="@+id/card_nav_btnAssignments"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="24dp"
                     android:text="Assignments"
-                    android:layout_below="@id/classInfo"
+                    android:layout_below="@id/card_classInfoText"
                     />
                 <Button
-                    android:id="@+id/btnUpdate"
+                    android:id="@+id/card_btnUpdate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="24dp"
                     android:text="Update Data"
-                    android:layout_below="@id/btnAssignments"/>
+                    android:layout_below="@id/card_nav_btnAssignments"/>
                 <Button
-                    android:id="@+id/btnDelete"
+                    android:id="@+id/card_btnDelete"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="24dp"
                     android:text="Delete Existing Data"
 
-                    android:layout_below="@id/btnUpdate"/>
+                    android:layout_below="@id/card_btnUpdate"/>
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>

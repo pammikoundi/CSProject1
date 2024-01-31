@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/add"
+        android:id="@+id/activity_add_class"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add"
@@ -18,19 +18,19 @@
         android:padding="10dp"
         />
     <Button
-        android:id="@+id/to_do_list"
+        android:id="@+id/activity_nav_to_do_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="To Do List"
         android:layout_centerHorizontal="true"
-        android:layout_above="@id/add"
+        android:layout_above="@id/activity_add_class"
         />
     <Button
         android:id="@+id/back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Back"
-        android:layout_below="@+id/to_do_list"
+        android:layout_below="@+id/activity_navigate_to_do_list"
         />
 
     <ScrollView

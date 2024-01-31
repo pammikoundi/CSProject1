@@ -16,10 +16,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     DBHelper DB;
-    Button add, todoButton;
+    Button addBtn, todoBtn;
     AlertDialog dialog, updateDialog;
-    LinearLayout layout;
-    String userName, current_class_name;
+    LinearLayout list_layout;
+    String userName, currentClassName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,13 +27,13 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = getIntent(); // gets the previously created intent
         userName = intent.getStringExtra("userName"); // will return "FirstKeyValue"
-        current_class_name=null;
+        currentClassName =null;
 
         Button backButton = findViewById(R.id.back);
 
-        add = findViewById(R.id.add);
-        todoButton = findViewById(R.id.to_do_list);
-        layout = findViewById(R.id.container);
+        addBtn = findViewById(R.id.activity_add_class);
+        todoBtn = findViewById(R.id.activity_nav_to_do_list);
+        list_layout = findViewById(R.id.container);
 
         buildUpdateDialog();
         buildDialog();
@@ -41,10 +41,10 @@ public class MainActivity extends AppCompatActivity {
 
         backButton.setOnClickListener(v -> finish());
 
-        add.setOnClickListener(v -> dialog.show());
+        addBtn.setOnClickListener(v -> dialog.show());
 
 
-        todoButton.setOnClickListener(v -> {
+        todoBtn.setOnClickListener(v -> {
             Log.d("MainActivity", "To Do List button clicked");
             navigateToToDoListActivity(null);
         });
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showAllCards() {
-        layout.removeAllViews();
+        list_layout.removeAllViews();
         Cursor res = DB.getclassdata(userName);
         if (res.getCount() == 0) {
             return;
@@ -82,12 +82,12 @@ public class MainActivity extends AppCompatActivity {
     private void buildUpdateDialog() {
         AlertDialog.Builder updateBuilder = new AlertDialog.Builder(this);
         View view = getLayoutInflater().inflate(R.layout.class_update_dialog, null);
-        final EditText instructor = view.findViewById(R.id.instructorEdit);
-        final EditText classSection = view.findViewById(R.id.classSectionEdit);
-        final EditText classLocation = view.findViewById(R.id.classLocationEdit);
-        final EditText repeat = view.findViewById(R.id.repeatEdit);
-        final EditText startTime = view.findViewById(R.id.startTimeEdit);
-        final EditText endTime = view.findViewById(R.id.endTimeEdit);
+        final EditText instructor = view.findViewById(R.id.dialog_instructorEdit);
+        final EditText classSection = view.findViewById(R.id.dialog_classSectionEdit);
+        final EditText classLocation = view.findViewById(R.id.dialog_classLocationEdit);
+        final EditText repeat = view.findViewById(R.id.dialog_repeatEdit);
+        final EditText startTime = view.findViewById(R.id.dialog_startTimeEdit);
+        final EditText endTime = view.findViewById(R.id.dialog_endTimeEdit);
 
         updateBuilder.setView(view);
         updateBuilder.setTitle("Enter Class Information")
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                     String startTimeText = startTime.getText().toString();
                     String endTimeText = endTime.getText().toString();
 
-                    boolean checkUpdateData = DB.updateclassdata(current_class_name, instructorText, classSectionText, classLocationText, repeatText, startTimeText, endTimeText);
+                    boolean checkUpdateData = DB.updateclassdata(currentClassName, instructorText, classSectionText, classLocationText, repeatText, startTimeText, endTimeText);
 
                     if (checkUpdateData) {
                         showAllCards();
@@ -118,13 +118,13 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View view = getLayoutInflater().inflate(R.layout.class_dialog, null);
 
-        final EditText name = view.findViewById(R.id.nameEdit);
-        final EditText instructor = view.findViewById(R.id.instructorEdit);
-        final EditText classSection = view.findViewById(R.id.classSectionEdit);
-        final EditText classLocation = view.findViewById(R.id.classLocationEdit);
-        final EditText repeat = view.findViewById(R.id.repeatEdit);
-        final EditText startTime = view.findViewById(R.id.startTimeEdit);
-        final EditText endTime = view.findViewById(R.id.endTimeEdit);
+        final EditText name = view.findViewById(R.id.dialog_nameEdit);
+        final EditText instructor = view.findViewById(R.id.dialog_instructorEdit);
+        final EditText classSection = view.findViewById(R.id.dialog_classSectionEdit);
+        final EditText classLocation = view.findViewById(R.id.dialog_classLocationEdit);
+        final EditText repeat = view.findViewById(R.id.dialog_repeatEdit);
+        final EditText startTime = view.findViewById(R.id.dialog_startTimeEdit);
+        final EditText endTime = view.findViewById(R.id.dialog_endTimeEdit);
 
         builder.setView(view);
         builder.setTitle("Enter Class Information")
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
                     String repeatText = repeat.getText().toString();
                     String startTimeText = startTime.getText().toString();
                     String endTimeText = endTime.getText().toString();
-                    current_class_name=nameText;
+                    currentClassName =nameText;
                     boolean checkInsertData = DB.insertclassdata(nameText,userActivity,instructorText, classSectionText, classLocationText, repeatText, startTimeText, endTimeText);
 
                     if (checkInsertData) {
@@ -157,10 +157,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void addCard(String name,String instructor, String class_section, String class_location, String repeat, String start_time, String end_time) {
         final View view = getLayoutInflater().inflate(R.layout.class_card, null);
-        TextView nameView = view.findViewById(R.id.classInfo);
-        Button delete = view.findViewById(R.id.btnDelete);
-        Button update = view.findViewById(R.id.btnUpdate);
-        Button assignments = view.findViewById(R.id.btnAssignments);
+        TextView nameView = view.findViewById(R.id.card_classInfoText);
+        Button delete = view.findViewById(R.id.card_btnDelete);
+        Button update = view.findViewById(R.id.card_btnUpdate);
+        Button assignments = view.findViewById(R.id.card_nav_btnAssignments);
 
         String cardText = String.format("Class Name: %s\nInstructor: %s\nClass Section: %s\nClass Location: %s\nRepeat: %s\nStart Time: %s\nEnd Time: %s",
                 name, instructor, class_section, class_location, repeat, start_time, end_time);
@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         delete.setOnClickListener(v -> {
-            layout.removeView(view);
+            list_layout.removeView(view);
             boolean checkDeleteData = DB.deleteclassdata(name);
             if (checkDeleteData) {
                 Toast.makeText(MainActivity.this, "Entry Deleted", Toast.LENGTH_SHORT).show();
@@ -191,10 +191,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         update.setOnClickListener(v -> {
-            current_class_name=name;
+            currentClassName =name;
             updateDialog.show();
         });
 
-        layout.addView(view);
+        list_layout.addView(view);
     }
 }

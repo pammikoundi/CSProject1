@@ -22,7 +22,7 @@
                 android:padding="10dp">
 
                 <TextView
-                    android:id="@+id/userInfo"
+                    android:id="@+id/card_userInfoText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="User Info\n"
@@ -31,20 +31,20 @@
                     android:textSize="30dp"/>
 
                 <Button
-                    android:id="@+id/btnShowClasses"
+                    android:id="@+id/card_btnShowClasses"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="24dp"
                     android:text="Show Classes"
-                    android:layout_below="@id/userInfo"
+                    android:layout_below="@id/card_userInfoText"
                     />
                 <Button
-                    android:id="@+id/btnDelete"
+                    android:id="@+id/card_btnDelete"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="24dp"
                     android:text="Delete Existing Data"
-                    android:layout_below="@id/btnShowClasses"
+                    android:layout_below="@id/card_btnShowClasses"
                     />
             </RelativeLayout>
 

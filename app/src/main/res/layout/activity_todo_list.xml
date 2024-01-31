@@ -8,7 +8,7 @@
     tools:context=".ToDoListActivity">
 
     <Button
-        android:id="@+id/add"
+        android:id="@+id/activity_add_assignment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add"
@@ -18,12 +18,12 @@
         android:padding="10dp"
         />
     <Button
-        android:id="@+id/back"
+        android:id="@+id/activity_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Back"
         android:layout_centerHorizontal="true"
-        android:layout_above="@id/add"
+        android:layout_above="@id/activity_add_assignment"
         />
 
     <ScrollView
@@ -32,11 +32,10 @@
         android:layout_marginBottom="120dp"
         android:scrollbars="none">
         <LinearLayout
-            android:id="@+id/container"
+            android:id="@+id/activity_class_list_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

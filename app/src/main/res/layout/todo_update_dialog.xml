@@ -15,25 +15,25 @@
             android:padding="5dp"
             >
             <EditText
-                android:id="@+id/assignmentTypeEdit"
+                android:id="@+id/dialog_assignmentTypeEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Assignment Type"
                 android:textSize="20dp"/>
             <EditText
-                android:id="@+id/assignmentLocationEdit"
+                android:id="@+id/dialog_assignmentLocationEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Submission Location/ Testing Location"
                 android:textSize="20dp"/>
             <EditText
-                android:id="@+id/dueDateEdit"
+                android:id="@+id/dialog_dueDateEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Due Date?"
                 android:textSize="20dp"/>
             <EditText
-                android:id="@+id/progressEdit"
+                android:id="@+id/dialog_progressEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Progress"
@@ -41,7 +41,7 @@
                 android:inputType="time"
                 />
             <EditText
-                android:id="@+id/completeEdit"
+                android:id="@+id/dialog_completeEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="End Time"
