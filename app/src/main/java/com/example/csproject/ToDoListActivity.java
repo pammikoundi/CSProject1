@@ -29,7 +29,7 @@ public class ToDoListActivity extends AppCompatActivity {
         Intent intent = getIntent(); // gets the previously created intent
         className = intent.getStringExtra("className"); // will return "FirstKeyValue"
 
-        add = findViewById(R.id.activty_add_user);
+        add = findViewById(R.id.activity_add_assignment);
         backButton = findViewById(R.id.activity_back);
         layout = findViewById(R.id.activity_class_list_container);
 
