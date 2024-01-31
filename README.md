@@ -48,3 +48,54 @@ Team Presentation: Introduce your team, detailing each member's name, role, and 
 Android tutorial from part one!
 Part 2--College Scheduler App Description! Elaborate on the app your team designed and developed and describe how the different screens and features respond to the proposed user needs.
 Video Demonstration: Include a demo video showcasing your app and its features.
+
+
+## 1/30/2024- Status Update KP
+
+User Page
+
+•Add User - ✅
+
+•Update User - Not possible- User is a primary key in the database. Not using unique id as primary.
+
+•Delete User -✅ Deleting User does not delete assosiated details yet.
+
+Class details
+
+•Date and Time - Working on it
+
+•Days of Week it repeats on - Have but could change to be better via inputs
+
+•Professor-✅
+
+•Class Section-✅
+
+•Location and Room Number-Implemented using text box can change if need be
+
+•Class details seperate from To-Do list-✅
+
+To-Do-List
+
+• List assignments-✅
+
+• Sorting assignments by Due Date - No sorting or UI for sorting
+
+• Sorting assignments by Class - No sorting or UI for sorting
+
+• Add Assignments/Delete Assignments/ Update Assignment details - ✅
+
+• Complete or Not Flag/ Move to another list - No Logic for moving and no UI for another list
+
+• Add Exam - No distinction between assignment and exam
+
+• Exam Details - No distinction between exam and assignment
+
+• Check button for each task - No UI For Check Button
+
+
+Optional
+
+• Push notifications
+• Users - ✅
+• Implement Database - ✅
+
