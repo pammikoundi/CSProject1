@@ -195,6 +195,8 @@ public class ToDoListActivity extends AppCompatActivity {
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                current_assignment_name=assignment_name;
                 updateDialog.show();
             }
         });
