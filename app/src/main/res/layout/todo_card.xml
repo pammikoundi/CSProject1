@@ -22,30 +22,29 @@
                 android:padding="10dp">
 
                 <TextView
-                    android:id="@+id/card_assignmentInfoText"
+                    android:id="@+id/card_assignmentNameText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Assignment Name:\nAssignment Type:\nLocation:\nDue Date:\nProgress:\nComplete:\n\n"
+                    android:text="Assignment Name: "
                     android:textColor="@android:color/holo_purple"
                     android:textFontWeight="1000"
                     android:textSize="30dp"/>
-
                 <Button
-                    android:id="@+id/card_btnUpdate"
-                    android:layout_width="match_parent"
+                    android:id="@+id/card_btnviewDetails"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="24dp"
-                    android:text="Update Data"
-                    android:layout_below="@id/card_assignmentInfoText"
-                    />
-                <Button
-                    android:id="@+id/card_btnDelete"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="24dp"
-                    android:text="Delete Existing Data"
-                    android:layout_below="@id/card_btnUpdate"/>
+                    android:layout_below="@id/card_assignmentNameText"
+                    android:layout_toRightOf="@id/card_checkComplete"
+                    android:text="View Details"/>
 
+                <CheckBox
+                    android:id="@+id/card_checkComplete"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/card_assignmentNameText"
+                    android:layout_alignParentStart="true"
+                    android:checked="false"
+                    android:text="Mark Complete" />
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>

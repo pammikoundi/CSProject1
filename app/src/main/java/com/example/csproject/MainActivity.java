@@ -38,11 +38,9 @@ public class MainActivity extends AppCompatActivity {
         buildUpdateDialog();
         buildDialog();
 
-
         backButton.setOnClickListener(v -> finish());
 
         addBtn.setOnClickListener(v -> dialog.show());
-
 
         todoBtn.setOnClickListener(v -> {
             Log.d("MainActivity", "To Do List button clicked");

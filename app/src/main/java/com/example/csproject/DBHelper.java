@@ -80,7 +80,6 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-
     public Boolean insertassignmentdata(String assignment_name, String assignment_type, String assignment_class, String assignment_location,String due_date, String progress, String complete)
     {
         SQLiteDatabase DB = this.getWritableDatabase();
@@ -138,6 +137,13 @@ public class DBHelper extends SQLiteOpenHelper {
     {
         SQLiteDatabase DB = this.getWritableDatabase();
         Cursor cursor = DB.rawQuery("Select * from Assignmentdetails where assignment_class=?", new String[]{className});
+        return cursor;
+    }
+
+    public Cursor getassignmentinfodata(String assignmentName)
+    {
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor cursor = DB.rawQuery("Select * from Assignmentdetails where assignment_name=?", new String[]{assignmentName});
         return cursor;
     }
 
