@@ -92,9 +92,9 @@ To-Do-List
 
 • Complete or Not Flag/ Move to another list - No Logic for moving
 
-• Sorting assignments by Due Date - No sorting or UI for sorting
+• Sorting assignments by Due Date - ✅
 
-• Sorting assignments by Class - No sorting or UI for sorting
+• Sorting assignments by Class - ✅
 
 • Add Exam - No distinction between assignment and exam
 
