@@ -114,7 +114,16 @@ public class UserActivity extends AppCompatActivity {
         showClasses.setOnClickListener(v -> navigateToMainActivity(user_name));
 
         delete.setOnClickListener(v -> {
+            Cursor res = DB.getclassdata(user_name);
+            if (res.getCount() == 0) {
+                return;
+            }
+            while (res.moveToNext()) {
+                String nameText = res.getString(0);
+                DB.deleteclassassignmentdata(nameText);
+            }
             boolean checkDeleteData = DB.deleteuserdata(user_name);
+            DB.deleteclassuserdata(user_name);
             showAllCards();
             if (checkDeleteData) {
                 Toast.makeText(UserActivity.this, "Entry Deleted", Toast.LENGTH_SHORT).show();
