@@ -136,13 +136,15 @@ public class MainActivity extends AppCompatActivity {
                         endHourFormat="PM";
                         endHour=endTime.getHour()-12;
                     }
+                    String startMinFormat=String.format("%02d",startTime.getMinute());
+                    String endMinFormat=String.format("%02d", endTime.getMinute());
 
                     String instructorText = instructor.getText().toString();
                     String classSectionText = classSection.getText().toString();
                     String classLocationText = classLocation.getText().toString();
                     String dateText = (date.getMonth()+1)+"/"+date.getDayOfMonth()+"/"+date.getYear();
-                    String startTimeText = startHour+":"+startTime.getMinute()+" "+startHourFormat;
-                    String endTimeText = endHour+":"+endTime.getMinute()+" "+endHourFormat;
+                    String startTimeText = startHour+":"+startMinFormat+" "+startHourFormat;
+                    String endTimeText = endHour+":"+endMinFormat+" "+endHourFormat;
                     boolean checkUpdateData = DB.updateclassdata(currentClassName,userName ,instructorText, classSectionText, classLocationText, dateText, repeat, startTimeText, endTimeText);
 
                     if (checkUpdateData) {
@@ -217,13 +219,16 @@ public class MainActivity extends AppCompatActivity {
                         endHour=endTime.getHour()-12;
                     }
 
+                    String startMinFormat=String.format("%02d",startTime.getMinute());
+                    String endMinFormat=String.format("%02d", endTime.getMinute());
+
                     String nameText = name.getText().toString();
                     String instructorText = instructor.getText().toString();
                     String classSectionText = classSection.getText().toString();
                     String classLocationText = classLocation.getText().toString();
                     String dateText = (date.getMonth()+1)+"/"+date.getDayOfMonth()+"/"+date.getYear();
-                    String startTimeText = startHour+":"+startTime.getMinute()+" "+startHourFormat;
-                    String endTimeText = endHour+":"+endTime.getMinute()+" "+endHourFormat;
+                    String startTimeText = startHour+":"+startMinFormat+" "+startHourFormat;
+                    String endTimeText = endHour+":"+endMinFormat+" "+endHourFormat;
                     currentClassName =nameText;
                     boolean checkInsertData = DB.insertclassdata(nameText,userName ,instructorText, classSectionText, classLocationText, dateText, repeat, startTimeText, endTimeText);
 

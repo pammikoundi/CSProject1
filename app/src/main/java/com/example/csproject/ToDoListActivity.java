@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -13,6 +14,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Date;
 
 public class ToDoListActivity extends AppCompatActivity {
     DBHelper DB;
@@ -80,9 +83,8 @@ public class ToDoListActivity extends AppCompatActivity {
         final EditText assignmentNameField = view.findViewById(R.id.dialog_assignmentNameEdit);
         final EditText assignmentTypeField = view.findViewById(R.id.dialog_assignmentTypeEdit);
         final EditText assignmentLocationField = view.findViewById(R.id.dialog_assignmentLocationEdit);
-        final EditText dueDateField = view.findViewById(R.id.dialog_dueDateEdit);
+        final DatePicker dueDateField = view.findViewById(R.id.dialog_dueDateEdit);
         final EditText progressField = view.findViewById(R.id.dialog_progressEdit);
-        final EditText completeField = view.findViewById(R.id.dialog_completeEdit);
 
         builder.setView(view);
         builder.setTitle("Enter Class Information")
@@ -91,9 +93,9 @@ public class ToDoListActivity extends AppCompatActivity {
                     String assignment_type = assignmentTypeField.getText().toString();
                     String assignment_class = className;
                     String assignment_location = assignmentLocationField.getText().toString();
-                    String due_date = dueDateField.getText().toString();
+                    String due_date = (dueDateField.getMonth()+1)+"/"+dueDateField.getDayOfMonth()+"/"+dueDateField.getYear();
                     String progress = progressField.getText().toString();
-                    String complete = completeField.getText().toString();
+                    String complete = "";
 
                     boolean checkInsertData = DB.insertassignmentdata(assignment_name, assignment_type, assignment_class, assignment_location, due_date, progress, complete);
                     if (checkInsertData) {
