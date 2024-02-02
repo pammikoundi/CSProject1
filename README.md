@@ -90,7 +90,7 @@ To-Do-List
 
 • Add Assignments/Delete Assignments/ Update Assignment details - ✅
 
-• Complete or Not Flag/ Move to another list - No Logic for moving
+• Complete or Not Flag/ Move to another list - ✅
 
 • Sorting assignments by Due Date - ✅
 
