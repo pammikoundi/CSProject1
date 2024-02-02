@@ -62,9 +62,10 @@ User Page
 
 •Add User - ✅
 
+•Delete User - ✅
+
 •Update User - Not possible- User is a primary key in the database. Not using unique id as primary.
 
-•Delete User - Deleting User does not delete assosiated details yet.
 
 Class details
 
