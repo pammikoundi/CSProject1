@@ -5,22 +5,25 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="82dp"
+        android:background="#000000"
         android:padding="10dp">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="395dp"
+            android:layout_height="66dp"
+            android:background="#FBFADA"
             android:orientation="vertical"
-            android:padding="5dp"
-            >
+            android:padding="5dp">
+
             <EditText
                 android:id="@+id/dialog_userNameEdit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="381dp"
+                android:layout_height="50dp"
+                android:background="#ADBC9F"
                 android:hint="User Name"
-                android:textSize="20dp"/>
-            </LinearLayout>
+                android:textSize="20dp" />
+        </LinearLayout>
     </RelativeLayout>
 
 </RelativeLayout>

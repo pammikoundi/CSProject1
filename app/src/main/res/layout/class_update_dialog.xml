@@ -6,38 +6,42 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#000000"
         android:padding="10dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#FBFADA"
             android:orientation="vertical"
-            android:padding="5dp"
-            >
+            android:padding="5dp">
 
             <EditText
                 android:id="@+id/dialog_instructorEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Instructor"
-                android:textSize="20dp"/>
+                android:textSize="20dp" />
+
             <EditText
                 android:id="@+id/dialog_classSectionEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Class Section"
-                android:textSize="20dp"/>
+                android:textSize="20dp" />
+
             <EditText
                 android:id="@+id/dialog_classLocationEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Class Location"
-                android:textSize="20dp"/>
+                android:textSize="20dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Date of Class"
-                android:textSize="20dp"/>
+                android:textSize="20dp" />
 
             <DatePicker
                 android:id="@+id/dialog_dateEdit"
@@ -50,47 +54,47 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Repeat Days"
-                android:textSize="20dp"/>
+                android:textSize="20dp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:padding="5dp">
+
                 <CheckBox
                     android:id="@+id/monday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mon."
-                    />
+                    android:text="Mon." />
+
                 <CheckBox
                     android:id="@+id/tuesday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/monday"
-                    android:text="Tues."
-                    />
+                    android:text="Tues." />
+
                 <CheckBox
                     android:id="@+id/wednesday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/tuesday"
-                    android:text="Wed."
-                    />
+                    android:text="Wed." />
+
                 <CheckBox
                     android:id="@+id/thursday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/wednesday"
-                    android:text="Thurs."
-                    />
+                    android:text="Thurs." />
+
                 <CheckBox
                     android:id="@+id/friday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/thursday"
-                    android:text="Fri."
-                    />
+                    android:text="Fri." />
 
             </RelativeLayout>
 
@@ -99,7 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Start Time"
-                android:textSize="20dp"/>
+                android:textSize="20dp" />
 
             <TimePicker
                 android:id="@+id/dialog_startTime"
@@ -107,11 +111,12 @@
                 android:layout_height="100dp"
                 android:isScrollContainer="false"
                 android:timePickerMode="spinner" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="End Time"
-                android:textSize="20dp"/>
+                android:textSize="20dp" />
 
             <TimePicker
                 android:id="@+id/dialog_endTime"

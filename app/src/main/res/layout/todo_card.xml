@@ -19,23 +19,31 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="#7180F0"
                 android:padding="10dp">
 
                 <TextView
                     android:id="@+id/card_assignmentNameText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed-medium"
                     android:text="Assignment Name: "
-                    android:textColor="@android:color/holo_purple"
+                    android:textColor="@color/black"
                     android:textFontWeight="1000"
-                    android:textSize="30dp"/>
+                    android:textSize="30dp" />
+
                 <Button
                     android:id="@+id/card_btnviewDetails"
-                    android:layout_width="wrap_content"
+                    android:layout_width="163dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/card_assignmentNameText"
+                    android:layout_marginLeft="51dp"
+                    android:layout_marginTop="2dp"
                     android:layout_toRightOf="@id/card_checkComplete"
-                    android:text="View Details"/>
+                    android:background="#FFFFFF"
+                    android:text="View Details"
+                    android:textColor="#000000"
+                    android:textSize="20dp" />
 
                 <CheckBox
                     android:id="@+id/card_checkComplete"

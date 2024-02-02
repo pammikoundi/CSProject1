@@ -19,40 +19,58 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="#000000"
                 android:padding="10dp">
 
                 <TextView
                     android:id="@+id/activity_assignmentInfoText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Assignment Name:\nAssignment Class:\nAssignment Type:\nLocation:\nDue Date:\nProgress:\nComplete:\n\n"
-                    android:textColor="@android:color/holo_purple"
+                    android:background="#45B0E1"
+                    android:fontFamily="casual"
+                    android:text=" Assignment Name:\n Assignment Class:\n Assignment Type:\n Location:\n Due Date:\n Progress:\n Complete:\n\n"
+                    android:textColor="@color/black"
                     android:textFontWeight="1000"
-                    android:textSize="30dp"/>
+                    android:textSize="30dp" />
 
                 <Button
                     android:id="@+id/activity_nav_btnUpdate"
-                    android:layout_width="match_parent"
+                    android:layout_width="101dp"
                     android:layout_height="wrap_content"
-                    android:textSize="24dp"
-                    android:text="Update Data"
-                    android:layout_below="@id/activity_assignmentInfoText"
-                    />
+                    android:layout_alignEnd="@+id/activity_assignmentInfoText"
+                    android:layout_alignBottom="@+id/activity_assignmentInfoText"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="30dp"
+                    android:background="#000000"
+                    android:text="Update"
+                    android:textColor="#FFFFFF"
+                    android:textSize="17dp" />
+
                 <Button
                     android:id="@+id/activity_btnDelete"
-                    android:layout_width="match_parent"
+                    android:layout_width="112dp"
                     android:layout_height="wrap_content"
-                    android:textSize="24dp"
-                    android:text="Delete Data"
-                    android:layout_below="@id/activity_nav_btnUpdate"/>
+                    android:layout_alignEnd="@+id/activity_assignmentInfoText"
+                    android:layout_alignBottom="@+id/activity_assignmentInfoText"
+                    android:layout_marginEnd="250dp"
+                    android:layout_marginBottom="30dp"
+                    android:background="#000000"
+                    android:text="Delete"
+                    android:textColor="#FDFDFD"
+                    android:textSize="17dp" />
+
                 <Button
                     android:id="@+id/activity_btnBack"
-                    android:layout_width="match_parent"
+                    android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:textSize="24dp"
+                    android:layout_alignEnd="@+id/activity_assignmentInfoText"
+                    android:layout_alignBottom="@+id/activity_assignmentInfoText"
+                    android:layout_marginEnd="130dp"
+                    android:layout_marginBottom="30dp"
+                    android:background="#000000"
                     android:text="Back"
-                    android:layout_below="@id/activity_btnDelete"
-                    android:layout_marginBottom="5dp"/>
+                    android:textColor="#FFFFFF"
+                    android:textSize="17dp" />
 
             </RelativeLayout>
 
