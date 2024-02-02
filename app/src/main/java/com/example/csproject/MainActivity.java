@@ -260,6 +260,7 @@ public class MainActivity extends AppCompatActivity {
         delete.setOnClickListener(v -> {
             list_layout.removeView(view);
             boolean checkDeleteData = DB.deleteclassdata(name);
+            DB.deleteclassassignmentdata(name);
             if (checkDeleteData) {
                 Toast.makeText(MainActivity.this, "Entry Deleted", Toast.LENGTH_SHORT).show();
 

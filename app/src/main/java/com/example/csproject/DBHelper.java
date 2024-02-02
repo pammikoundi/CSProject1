@@ -126,6 +126,17 @@ public class DBHelper extends SQLiteOpenHelper {
             return false;
         }
     }
+    public Boolean deleteclassassignmentdata(String name)
+    {
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor cursor = DB.rawQuery("Select * from Assignmentdetails where assignment_class = ?", new String[]{name});
+        if (cursor.getCount() > 0) {
+            long result = DB.delete("Assignmentdetails", "assignment_class=?", new String[]{name});
+            return result != -1;
+        } else {
+            return false;
+        }
+    }
     public Cursor getallassignmentdata()
     {
         SQLiteDatabase DB = this.getWritableDatabase();
