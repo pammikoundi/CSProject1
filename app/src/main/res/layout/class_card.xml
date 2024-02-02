@@ -43,14 +43,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="24dp"
-                    android:text="Update Data"
+                    android:text="Update Class Info."
                     android:layout_below="@id/card_nav_btnAssignments"/>
                 <Button
                     android:id="@+id/card_btnDelete"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="24dp"
-                    android:text="Delete Existing Data"
+                    android:text="Delete Class"
 
                     android:layout_below="@id/card_btnUpdate"/>
             </RelativeLayout>

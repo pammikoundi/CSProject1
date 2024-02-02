@@ -59,18 +59,6 @@ public class AssignmentActivity extends AppCompatActivity {
 
         updateButton.setOnClickListener(v -> updateDialog.show());
         backButton.setOnClickListener(v -> finish());
-
-        deleteButton.setOnClickListener(v -> {
-
-            boolean checkDeleteData = DB.deleteassignmentdata(current_assignment_name);
-            if (checkDeleteData) {
-                Toast.makeText(AssignmentActivity.this, "Entry Deleted", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(AssignmentActivity.this, "Entry Not Deleted", Toast.LENGTH_SHORT).show();
-            }
-            finish();
-        });
-
     }
 
     private void buildUpdateDialog() {
@@ -84,7 +72,7 @@ public class AssignmentActivity extends AppCompatActivity {
 
         updateBuilder.setView(view);
 
-        updateBuilder.setTitle("Enter Class Information")
+        updateBuilder.setTitle("Enter Assignment Information")
                 .setPositiveButton("OK", (dialog, which) -> {
 
                     String assignment_type = assignmentTypeField.getText().toString();

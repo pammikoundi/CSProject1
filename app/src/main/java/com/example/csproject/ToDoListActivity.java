@@ -58,8 +58,8 @@ public class ToDoListActivity extends AppCompatActivity {
     private void navigateAssignmentActivity(String assignment_name) {
         Intent intent = new Intent(ToDoListActivity.this, AssignmentActivity.class);
         intent.putExtra("assignmentName", assignment_name);
-
         startActivity(intent);
+
     }
 
     private void showCards(String sortBy) {
@@ -93,7 +93,7 @@ public class ToDoListActivity extends AppCompatActivity {
         final EditText progressField = view.findViewById(R.id.dialog_progressEdit);
 
         builder.setView(view);
-        builder.setTitle("Enter Class Information")
+        builder.setTitle("Enter Assignment Information")
                 .setPositiveButton("OK", (dialog, which) -> {
                     String assignment_name = assignmentNameField.getText().toString();
                     String assignment_type = assignmentTypeField.getText().toString();
@@ -121,6 +121,7 @@ public class ToDoListActivity extends AppCompatActivity {
         final View view = getLayoutInflater().inflate(R.layout.todo_card,null);
         TextView nameView = view.findViewById(R.id.card_assignmentNameText);
         Button viewDetails = view.findViewById(R.id.card_btnviewDetails);
+        Button deleteButton = view.findViewById(R.id.card_btnDelete);
         CheckBox complete = view.findViewById(R.id.card_checkComplete);
         if(isComplete.equals("Complete")){
             complete.setChecked(true);
@@ -136,6 +137,17 @@ public class ToDoListActivity extends AppCompatActivity {
 
         String cardText = String.format("Assignment Name: " + assignment_name);
         nameView.setText(cardText);
+
+        deleteButton.setOnClickListener(v -> {
+            boolean checkDeleteData = DB.deleteassignmentdata(assignment_name);
+            if (checkDeleteData) {
+                Toast.makeText(ToDoListActivity.this, "Entry Deleted", Toast.LENGTH_SHORT).show();
+                showCards("due_date");
+            } else {
+                Toast.makeText(ToDoListActivity.this, "Entry Not Deleted", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         viewDetails.setOnClickListener(v -> {
                     navigateAssignmentActivity(assignment_name);
@@ -158,15 +170,13 @@ public class ToDoListActivity extends AppCompatActivity {
                 }
                 if (buttonView.isChecked()) {
                     isComplete="Complete";
-                    DB.updateassignmentdata(assignment_name, assignment_type, assignment_class, assignment_location, due_date, progress, isComplete);
-                    showCards("due_date");
                 }
                 else
                 {
                     isComplete= "Not Complete";
-                    DB.updateassignmentdata(assignment_name, assignment_type, assignment_class, assignment_location, due_date, progress, isComplete);
-                    showCards("due_date");
                 }
+                DB.updateassignmentdata(assignment_name, assignment_type, assignment_class, assignment_location, due_date, progress, isComplete);
+                showCards("due_date");
             }
         });
 
