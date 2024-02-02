@@ -37,28 +37,10 @@
                     android:id="@+id/activity_nav_btnUpdate"
                     android:layout_width="101dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/activity_assignmentInfoText"
-                    android:layout_alignBottom="@+id/activity_assignmentInfoText"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="30dp"
-                    android:background="#000000"
-                    android:text="Update"
-                    android:textColor="#FFFFFF"
-                    android:textSize="17dp" />
-
-                <Button
-                    android:id="@+id/activity_btnDelete"
-                    android:layout_width="112dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/activity_assignmentInfoText"
-                    android:layout_alignBottom="@+id/activity_assignmentInfoText"
-                    android:layout_marginEnd="250dp"
-                    android:layout_marginBottom="30dp"
-                    android:background="#000000"
-                    android:text="Delete"
-                    android:textColor="#FDFDFD"
-                    android:textSize="17dp" />
-
+                    android:textSize="24dp"
+                    android:text="Update Data"
+                    android:layout_below="@id/activity_assignmentInfoText"
+                    />
                 <Button
                     android:id="@+id/activity_btnBack"
                     android:layout_width="110dp"
@@ -69,8 +51,8 @@
                     android:layout_marginBottom="30dp"
                     android:background="#000000"
                     android:text="Back"
-                    android:textColor="#FFFFFF"
-                    android:textSize="17dp" />
+                    android:layout_below="@id/activity_nav_btnUpdate"
+                    />
 
             </RelativeLayout>
 

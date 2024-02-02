@@ -36,6 +36,13 @@
                     android:layout_below="@id/card_assignmentNameText"
                     android:layout_toRightOf="@id/card_checkComplete"
                     android:text="View Details"/>
+                <Button
+                    android:id="@+id/card_btnDelete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/card_assignmentNameText"
+                    android:layout_toRightOf="@id/card_btnviewDetails"
+                    android:text="Delete"/>
 
                 <CheckBox
                     android:id="@+id/card_checkComplete"

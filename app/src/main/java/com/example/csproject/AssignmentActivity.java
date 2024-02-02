@@ -28,7 +28,6 @@ public class AssignmentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_assignment);
 
         assignmentInfo = findViewById(R.id.activity_assignmentInfoText);
-        deleteButton = findViewById(R.id.activity_btnDelete);
         updateButton = findViewById(R.id.activity_nav_btnUpdate);
         backButton = findViewById(R.id.activity_btnBack);
 
