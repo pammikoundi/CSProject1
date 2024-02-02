@@ -79,7 +79,7 @@ Class details
 
 •Class details seperate from To-Do list-✅
 
-•Location and Room Number-Implemented using text box can change if need be
+•Location and Room Number-✅ Implemented using text box
 
 
 To-Do-List
@@ -90,11 +90,11 @@ To-Do-List
 
 • Add Assignments/Delete Assignments/ Update Assignment details - ✅
 
-• Complete or Not Flag/ Move to another list - No Logic for moving
+• Complete or Not Flag/ Move to another list - ✅
 
-• Sorting assignments by Due Date - No sorting or UI for sorting
+• Sorting assignments by Due Date - ✅
 
-• Sorting assignments by Class - No sorting or UI for sorting
+• Sorting assignments by Class - ✅
 
 • Add Exam - No distinction between assignment and exam
 
@@ -108,5 +108,5 @@ Optional
 
 • Implement Database - ✅
 
-• Push notifications
+• Push notifications - Weekend Maybe
 

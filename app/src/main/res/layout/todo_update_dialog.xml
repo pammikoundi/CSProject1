@@ -24,7 +24,7 @@
                 android:id="@+id/dialog_assignmentLocationEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Submission Location/ Testing Location"
+                android:hint="Submission Location/Testing Location"
                 android:textSize="20dp"/>
             <EditText
                 android:id="@+id/dialog_dueDateEdit"
@@ -38,7 +38,6 @@
                 android:layout_height="wrap_content"
                 android:hint="Progress"
                 android:textSize="20dp"
-                android:inputType="time"
                 />
         </LinearLayout>
     </RelativeLayout>

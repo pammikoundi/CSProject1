@@ -14,6 +14,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.Objects;
+
 public class DBHelper extends SQLiteOpenHelper {
     public DBHelper(Context context) {
         super(context, "Userdata.db", null, 1);
@@ -31,6 +33,9 @@ public class DBHelper extends SQLiteOpenHelper {
         DB.execSQL("drop Table if exists Classdetails");
         DB.execSQL("drop Table if exists Assignmentdetails");
     }
+
+    //User Methods
+
     public Boolean insertUserdata(String user_name)
     {
         SQLiteDatabase DB = this.getWritableDatabase();
@@ -79,6 +84,8 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor cursor = DB.rawQuery("Select * from Userdetails where user_name=?", new String[]{userName});
         return cursor;
     }
+
+    //Assignment Methods
 
     public Boolean insertassignmentdata(String assignment_name, String assignment_type, String assignment_class, String assignment_location,String due_date, String progress, String complete)
     {
@@ -129,7 +136,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public Boolean deleteclassassignmentdata(String name)
     {
         SQLiteDatabase DB = this.getWritableDatabase();
-        Cursor cursor = DB.rawQuery("Select * from Assignmentdetails where assignment_class = ?", new String[]{name});
+        Cursor cursor = DB.rawQuery("Select * from Assignmentdetails where assignment_class = ? ", new String[]{name});
         if (cursor.getCount() > 0) {
             long result = DB.delete("Assignmentdetails", "assignment_class=?", new String[]{name});
             return result != -1;
@@ -137,19 +144,37 @@ public class DBHelper extends SQLiteOpenHelper {
             return false;
         }
     }
-    public Cursor getallassignmentdata()
+
+    public Cursor getsortedassignmentdata(String className, String orderBy)
     {
         SQLiteDatabase DB = this.getWritableDatabase();
-        Cursor cursor = DB.rawQuery("Select * from Assignmentdetails", null);
+        Cursor cursor;
+        if (className==null) {
+            if (orderBy.equals("class_name")) {
+                cursor = DB.rawQuery("Select * from Assignmentdetails  ORDER BY assignment_class", null);
+            } else {
+                cursor = DB.rawQuery("Select * from Assignmentdetails ORDER BY due_date", null);
+            }
+        }
+        else{
+            if (orderBy.equals("class_name")) {
+                cursor = DB.rawQuery("Select * from Assignmentdetails where assignment_class=?  ORDER BY assignment_class", new String[]{className});
+            } else {
+                cursor = DB.rawQuery("Select * from Assignmentdetails where assignment_class=?  ORDER BY due_date", new String[]{className});
+            }
+        }
         return cursor;
     }
 
     public Cursor getassignmentdata(String className)
     {
         SQLiteDatabase DB = this.getWritableDatabase();
-        Cursor cursor = DB.rawQuery("Select * from Assignmentdetails where assignment_class=?", new String[]{className});
+        Cursor cursor;
+        cursor = DB.rawQuery("Select * from Assignmentdetails where assignment_class=?", new String[]{className});
+
         return cursor;
     }
+
 
     public Cursor getassignmentinfodata(String assignmentName)
     {
@@ -157,6 +182,8 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor cursor = DB.rawQuery("Select * from Assignmentdetails where assignment_name=?", new String[]{assignmentName});
         return cursor;
     }
+
+    //Classes Methods
 
     public Boolean insertclassdata(String name,String user_name,String instructor, String class_section, String class_location,String class_date, String class_repeat, String start_time, String end_time)
     {
