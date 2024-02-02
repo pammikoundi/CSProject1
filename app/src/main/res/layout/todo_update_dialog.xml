@@ -26,12 +26,16 @@
                 android:layout_height="wrap_content"
                 android:hint="Submission Location/ Testing Location"
                 android:textSize="20dp"/>
-            <EditText
-                android:id="@+id/dialog_dueDateEdit"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Due Date?"
-                android:textSize="20dp"/>
+                android:text="Due Date"/>
+            <DatePicker
+                android:id="@+id/dialog_dueDateEdit"
+                android:layout_width="match_parent"
+                android:layout_height="89dp"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner" />
             <EditText
                 android:id="@+id/dialog_progressEdit"
                 android:layout_width="match_parent"

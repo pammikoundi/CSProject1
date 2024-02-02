@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -81,7 +82,7 @@ public class AssignmentActivity extends AppCompatActivity {
 
         final EditText assignmentTypeField = view.findViewById(R.id.dialog_assignmentTypeEdit);
         final EditText assignmentLocationField = view.findViewById(R.id.dialog_assignmentLocationEdit);
-        final EditText dueDateField = view.findViewById(R.id.dialog_dueDateEdit);
+        final DatePicker dueDateField = view.findViewById(R.id.dialog_dueDateEdit);
         final EditText progressField = view.findViewById(R.id.dialog_progressEdit);
 
         updateBuilder.setView(view);
@@ -91,7 +92,7 @@ public class AssignmentActivity extends AppCompatActivity {
 
                     String assignment_type = assignmentTypeField.getText().toString();
                     String assignment_location = assignmentLocationField.getText().toString();
-                    String due_date = dueDateField.getText().toString();
+                    String due_date = (dueDateField.getMonth()+1)+"/"+dueDateField.getDayOfMonth()+"/"+dueDateField.getYear();
                     String progress = progressField.getText().toString();
 
                     boolean checkUpdateData = DB.updateassignmentdata(current_assignment_name, assignment_type, current_assignment_class, assignment_location, due_date, progress, complete);
