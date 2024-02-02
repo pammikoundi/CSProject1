@@ -7,6 +7,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#8B7E74"
         >
 
         <androidx.cardview.widget.CardView
@@ -17,8 +18,9 @@
             app:cardElevation="10dp">
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="402dp"
+                android:layout_height="match_parent"
+                android:background="#65647C"
                 android:padding="10dp">
 
                 <TextView
@@ -26,23 +28,31 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Assignment Name: "
-                    android:textColor="@android:color/holo_purple"
+                    android:textColor="@color/black"
                     android:textFontWeight="1000"
-                    android:textSize="30dp"/>
+                    android:textSize="30dp" />
+
                 <Button
                     android:id="@+id/card_btnviewDetails"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="105dp"
+                    android:layout_height="35dp"
                     android:layout_below="@id/card_assignmentNameText"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginTop="-2dp"
                     android:layout_toRightOf="@id/card_checkComplete"
-                    android:text="View Details"/>
+                    android:background="#C7BCA1"
+                    android:text="View Details" />
+
                 <Button
                     android:id="@+id/card_btnDelete"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="103dp"
+                    android:layout_height="32dp"
                     android:layout_below="@id/card_assignmentNameText"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginTop="0dp"
                     android:layout_toRightOf="@id/card_btnviewDetails"
-                    android:text="Delete"/>
+                    android:background="#C7BCA1"
+                    android:text="Delete" />
 
                 <CheckBox
                     android:id="@+id/card_checkComplete"

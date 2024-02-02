@@ -5,49 +5,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="#92C7CF">
 
     <Button
         android:id="@+id/activity_add_class"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="40dp"
+        android:background="#AAD7D9"
         android:padding="10dp"
-        />
+        android:text="+"
+        android:textSize="20dp"/>
+
     <Button
         android:id="@+id/activity_nav_to_do_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="To Do List"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@id/activity_add_class"
-        />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="173dp"
+        android:layout_marginBottom="41dp"
+        android:background="#AAD7D9"
+        android:text="To Do List" />
+
     <Button
         android:id="@+id/back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Back"
-        android:layout_below="@+id/activity_nav_to_do_list"
-        />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="309dp"
+        android:layout_marginBottom="40dp"
+        android:background="#AAD7D9"
+        android:text="Back" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="120dp"
-        android:scrollbars="none">
+        android:scrollbars="none"
+        android:background="#E5E1DA">
         <LinearLayout
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Classes View"
-            android:textSize="50dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Classes:"
+                android:fontFamily="casual"
+                android:textColor="@color/black"
+                android:background="#92C7CF"
+                android:textSize="50dp" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

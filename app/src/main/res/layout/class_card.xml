@@ -7,7 +7,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        >
+        android:background="#E5E1DA">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -19,40 +19,57 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:background="#000000">
+
 
                 <TextView
                     android:id="@+id/card_classInfoText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Class Name:\nInstructor\nClassSection\nClassLocation\nRepeat\nStartTime\nEndTime\n\n"
-                    android:textColor="@android:color/holo_purple"
+                    android:background="#92C7CF"
+                    android:fontFamily="casual"
+                    android:text=" Class Name:\n Instructor: \n ClassSection: \n ClassLocation: \n Repeat:\n StartTime:\n EndTime:\n\n"
+                    android:textColor="@android:color/black"
                     android:textFontWeight="1000"
-                    android:textSize="30dp"/>
+                    android:textSize="30dp" />
 
                 <Button
                     android:id="@+id/card_nav_btnAssignments"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="24dp"
-                    android:text="Assignments"
-                    android:layout_below="@id/card_classInfoText"
-                    />
+                    android:layout_width="127dp"
+                    android:layout_height="59dp"
+                    android:layout_alignEnd="@+id/card_classInfoText"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="319dp"
+                    android:layout_marginEnd="127dp"
+                    android:background="#AAD7D9"
+                    android:text="Assignments/Tasks"
+                    android:textSize="13dp" />
+
                 <Button
                     android:id="@+id/card_btnUpdate"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="24dp"
-                    android:text="Update Data"
-                    android:layout_below="@id/card_nav_btnAssignments"/>
+                    android:layout_alignEnd="@+id/card_classInfoText"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="330dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="#AAD7D9"
+                    android:text="Update"
+                    android:textSize="17dp" />
+
                 <Button
                     android:id="@+id/card_btnDelete"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="24dp"
-                    android:text="Delete Existing Data"
+                    android:layout_alignTop="@+id/card_classInfoText"
 
-                    android:layout_below="@id/card_btnUpdate"/>
+                    android:layout_alignEnd="@+id/card_classInfoText"
+                    android:layout_marginTop="330dp"
+                    android:layout_marginEnd="278dp"
+                    android:background="#AAD7D9"
+                    android:text="Delete"
+                    android:textSize="17dp" />
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
