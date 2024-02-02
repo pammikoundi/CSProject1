@@ -33,6 +33,9 @@ public class DBHelper extends SQLiteOpenHelper {
         DB.execSQL("drop Table if exists Classdetails");
         DB.execSQL("drop Table if exists Assignmentdetails");
     }
+
+    //User Methods
+
     public Boolean insertUserdata(String user_name)
     {
         SQLiteDatabase DB = this.getWritableDatabase();
@@ -81,6 +84,8 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor cursor = DB.rawQuery("Select * from Userdetails where user_name=?", new String[]{userName});
         return cursor;
     }
+
+    //Assignment Methods
 
     public Boolean insertassignmentdata(String assignment_name, String assignment_type, String assignment_class, String assignment_location,String due_date, String progress, String complete)
     {
