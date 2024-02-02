@@ -64,46 +64,48 @@ User Page
 
 •Update User - Not possible- User is a primary key in the database. Not using unique id as primary.
 
-•Delete User -✅ Deleting User does not delete assosiated details yet.
+•Delete User - Deleting User does not delete assosiated details yet.
 
 Class details
 
-•Date and Time - Working on it
+•Date and Time - ✅
 
-•Days of Week it repeats on - Have but could change to be better via inputs
+•Days of Week it repeats on - ✅
 
 •Professor-✅
 
 •Class Section-✅
 
+•Class details seperate from To-Do list-✅
+
 •Location and Room Number-Implemented using text box can change if need be
 
-•Class details seperate from To-Do list-✅
 
 To-Do-List
 
+• Check button for each task - ✅
+
 • List assignments-✅
+
+• Add Assignments/Delete Assignments/ Update Assignment details - ✅
+
+• Complete or Not Flag/ Move to another list - No Logic for moving
 
 • Sorting assignments by Due Date - No sorting or UI for sorting
 
 • Sorting assignments by Class - No sorting or UI for sorting
 
-• Add Assignments/Delete Assignments/ Update Assignment details - ✅
-
-• Complete or Not Flag/ Move to another list - No Logic for moving and no UI for another list
-
 • Add Exam - No distinction between assignment and exam
 
 • Exam Details - No distinction between exam and assignment
 
-• Check button for each task - No UI For Check Button
 
 
 Optional
 
-• Push notifications
-
 • Users - ✅
 
 • Implement Database - ✅
+
+• Push notifications
 
