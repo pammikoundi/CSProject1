@@ -248,6 +248,18 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
+    public Boolean deleteclassuserdata(String name)
+    {
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor cursor = DB.rawQuery("Select * from Classdetails where user_name = ?", new String[]{name});
+        if (cursor.getCount() > 0) {
+            long result = DB.delete("Classdetails", "user_name=?", new String[]{name});
+            return result != -1;
+        } else {
+            return false;
+        }
+    }
+
     public Cursor getallclassdata()
     {
         SQLiteDatabase DB = this.getWritableDatabase();
