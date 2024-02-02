@@ -79,7 +79,7 @@ Class details
 
 •Class details seperate from To-Do list-✅
 
-•Location and Room Number-Implemented using text box can change if need be
+•Location and Room Number-✅ Implemented using text box
 
 
 To-Do-List
@@ -108,5 +108,5 @@ Optional
 
 • Implement Database - ✅
 
-• Push notifications
+• Push notifications - Weekend Maybe
 
