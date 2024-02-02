@@ -6,9 +6,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -30,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         currentClassName =null;
 
         Button backButton = findViewById(R.id.back);
-
         addBtn = findViewById(R.id.activity_add_class);
         todoBtn = findViewById(R.id.activity_nav_to_do_list);
         list_layout = findViewById(R.id.container);
@@ -69,11 +71,12 @@ public class MainActivity extends AppCompatActivity {
             String instructorText = res.getString(2);
             String classSectionText = res.getString(3);
             String classLocationText = res.getString(4);
-            String repeatText = res.getString(5);
-            String startTimeText = res.getString(6);
-            String endTimeText = res.getString(7);
+            String classDateText = res.getString(5);
+            String repeatText = res.getString(6);
+            String startTimeText = res.getString(7);
+            String endTimeText = res.getString(8);
 
-            addCard(nameText, instructorText, classSectionText, classLocationText, repeatText, startTimeText, endTimeText);
+            addCard(nameText, instructorText, classSectionText, classLocationText, classDateText,repeatText, startTimeText, endTimeText);
         }
     }
 
@@ -83,21 +86,64 @@ public class MainActivity extends AppCompatActivity {
         final EditText instructor = view.findViewById(R.id.dialog_instructorEdit);
         final EditText classSection = view.findViewById(R.id.dialog_classSectionEdit);
         final EditText classLocation = view.findViewById(R.id.dialog_classLocationEdit);
-        final EditText repeat = view.findViewById(R.id.dialog_repeatEdit);
-        final EditText startTime = view.findViewById(R.id.dialog_startTimeEdit);
-        final EditText endTime = view.findViewById(R.id.dialog_endTimeEdit);
+        final DatePicker date = view.findViewById(R.id.dialog_dateEdit);
+        final CheckBox monday = view.findViewById(R.id.monday);
+        final CheckBox tuesday = view.findViewById(R.id.tuesday);
+        final CheckBox wednesday = view.findViewById(R.id.wednesday);
+        final CheckBox thursday = view.findViewById(R.id.thursday);
+        final CheckBox friday = view.findViewById(R.id.friday);
+        final TimePicker startTime = view.findViewById(R.id.dialog_startTime);
+        final TimePicker endTime = view.findViewById(R.id.dialog_endTime);
 
         updateBuilder.setView(view);
         updateBuilder.setTitle("Enter Class Information")
                 .setPositiveButton("OK", (dialog, which) -> {
+                    String repeat="";
+                    if(monday.isChecked()){
+                        repeat+="Monday, ";
+                    }
+                    if(tuesday.isChecked()){
+                        repeat+="Tuesday, ";
+                    }
+                    if(wednesday.isChecked()){
+                        repeat+="Wednesday, ";
+                    }
+                    if(thursday.isChecked()){
+                        repeat+="Thursday, ";
+                    }
+                    if(friday.isChecked()){
+                        repeat+="Friday";
+                    }
+
+                    String startHourFormat=null;
+                    int startHour=0;
+                    if(startTime.getHour()<12){
+                       startHourFormat="AM";
+                       startHour=startTime.getHour();
+                    }
+                    else{
+                        startHourFormat="PM";
+                        startHour=startTime.getHour()-12;
+                    }
+
+                    String endHourFormat=null;
+                    int endHour=0;
+                    if(startTime.getHour()<12){
+                        endHourFormat="AM";
+                        endHour=endTime.getHour();
+                    }
+                    else{
+                        endHourFormat="PM";
+                        endHour=endTime.getHour()-12;
+                    }
+
                     String instructorText = instructor.getText().toString();
                     String classSectionText = classSection.getText().toString();
                     String classLocationText = classLocation.getText().toString();
-                    String repeatText = repeat.getText().toString();
-                    String startTimeText = startTime.getText().toString();
-                    String endTimeText = endTime.getText().toString();
-
-                    boolean checkUpdateData = DB.updateclassdata(currentClassName, instructorText, classSectionText, classLocationText, repeatText, startTimeText, endTimeText);
+                    String dateText = (date.getMonth()+1)+"/"+date.getDayOfMonth()+"/"+date.getYear();
+                    String startTimeText = startHour+":"+startTime.getMinute()+" "+startHourFormat;
+                    String endTimeText = endHour+":"+endTime.getMinute()+" "+endHourFormat;
+                    boolean checkUpdateData = DB.updateclassdata(currentClassName,userName ,instructorText, classSectionText, classLocationText, dateText, repeat, startTimeText, endTimeText);
 
                     if (checkUpdateData) {
                         showAllCards();
@@ -120,24 +166,66 @@ public class MainActivity extends AppCompatActivity {
         final EditText instructor = view.findViewById(R.id.dialog_instructorEdit);
         final EditText classSection = view.findViewById(R.id.dialog_classSectionEdit);
         final EditText classLocation = view.findViewById(R.id.dialog_classLocationEdit);
-        final EditText repeat = view.findViewById(R.id.dialog_repeatEdit);
-        final EditText startTime = view.findViewById(R.id.dialog_startTimeEdit);
-        final EditText endTime = view.findViewById(R.id.dialog_endTimeEdit);
+        final DatePicker date = view.findViewById(R.id.dialog_dateEdit);
+        final CheckBox monday = view.findViewById(R.id.monday);
+        final CheckBox tuesday = view.findViewById(R.id.tuesday);
+        final CheckBox wednesday = view.findViewById(R.id.wednesday);
+        final CheckBox thursday = view.findViewById(R.id.thursday);
+        final CheckBox friday = view.findViewById(R.id.friday);
+        final TimePicker startTime = view.findViewById(R.id.dialog_startTime);
+        final TimePicker endTime = view.findViewById(R.id.dialog_endTime);
 
         builder.setView(view);
         builder.setTitle("Enter Class Information")
                 .setPositiveButton("OK", (dialog, which) -> {
+                    String repeat="";
+                    if(monday.isChecked()){
+                        repeat+="Monday, ";
+                    }
+                    if(tuesday.isChecked()){
+                        repeat+="Tuesday, ";
+                    }
+                    if(wednesday.isChecked()){
+                        repeat+="Wednesday, ";
+                    }
+                    if(thursday.isChecked()){
+                        repeat+="Thursday, ";
+                    }
+                    if(friday.isChecked()){
+                        repeat+="Friday";
+                    }
 
-                    String userActivity = userName;
+                    String startHourFormat=null;
+                    int startHour=0;
+                    if(startTime.getHour()<12){
+                        startHourFormat="AM";
+                        startHour=startTime.getHour();
+                    }
+                    else{
+                        startHourFormat="PM";
+                        startHour=startTime.getHour()-12;
+                    }
+
+                    String endHourFormat=null;
+                    int endHour=0;
+                    if(endTime.getHour()<12){
+                        endHourFormat="AM";
+                        endHour=endTime.getHour();
+                    }
+                    else{
+                        endHourFormat="PM";
+                        endHour=endTime.getHour()-12;
+                    }
+
                     String nameText = name.getText().toString();
                     String instructorText = instructor.getText().toString();
                     String classSectionText = classSection.getText().toString();
                     String classLocationText = classLocation.getText().toString();
-                    String repeatText = repeat.getText().toString();
-                    String startTimeText = startTime.getText().toString();
-                    String endTimeText = endTime.getText().toString();
+                    String dateText = (date.getMonth()+1)+"/"+date.getDayOfMonth()+"/"+date.getYear();
+                    String startTimeText = startHour+":"+startTime.getMinute()+" "+startHourFormat;
+                    String endTimeText = endHour+":"+endTime.getMinute()+" "+endHourFormat;
                     currentClassName =nameText;
-                    boolean checkInsertData = DB.insertclassdata(nameText,userActivity,instructorText, classSectionText, classLocationText, repeatText, startTimeText, endTimeText);
+                    boolean checkInsertData = DB.insertclassdata(nameText,userName ,instructorText, classSectionText, classLocationText, dateText, repeat, startTimeText, endTimeText);
 
                     if (checkInsertData) {
                         showAllCards();
@@ -147,21 +235,20 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .setNegativeButton("Cancel", (dialog, which) -> {
-                    // Handle cancel if needed
                 });
 
         dialog = builder.create();
     }
 
-    private void addCard(String name,String instructor, String class_section, String class_location, String repeat, String start_time, String end_time) {
+    private void addCard(String name,String instructor, String class_section, String class_location, String class_date,String repeat_text, String start_time, String end_time) {
         final View view = getLayoutInflater().inflate(R.layout.class_card, null);
         TextView nameView = view.findViewById(R.id.card_classInfoText);
         Button delete = view.findViewById(R.id.card_btnDelete);
         Button update = view.findViewById(R.id.card_btnUpdate);
         Button assignments = view.findViewById(R.id.card_nav_btnAssignments);
 
-        String cardText = String.format("Class Name: %s\nInstructor: %s\nClass Section: %s\nClass Location: %s\nRepeat: %s\nStart Time: %s\nEnd Time: %s",
-                name, instructor, class_section, class_location, repeat, start_time, end_time);
+        String cardText = String.format("Class Name: %s\nInstructor: %s\nClass Section: %s\nClass Location: %s\nClass Date: %s\nRepeat: %s\nStart Time: %s\nEnd Time: %s",
+                name, instructor, class_section, class_location, class_date, repeat_text, start_time, end_time);
 
         nameView.setText(cardText);
 

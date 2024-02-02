@@ -21,7 +21,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase DB) {
         DB.execSQL("create Table Userdetails(user_name TEXT primary key)");
-        DB.execSQL("create Table Classdetails(class_name TEXT primary key,user_name TEXT, instructor TEXT, class_section TEXT, class_location TEXT, repeat TEXT, start_time TEXT, end_time TEXT)");
+        DB.execSQL("create Table Classdetails(class_name TEXT primary key,user_name TEXT, instructor TEXT, class_section TEXT, class_location TEXT,class_date TEXT, class_repeat TEXT, start_time TEXT, end_time TEXT)");
         DB.execSQL("create Table Assignmentdetails(assignment_name TEXT primary key,assignment_type TEXT, assignment_class TEXT, assignment_location TEXT, due_date TEXT, progress TEXT, complete TEXT)");
 
     }
@@ -147,7 +147,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public Boolean insertclassdata(String name,String user_name,String instructor, String class_section, String class_location, String repeat, String start_time, String end_time)
+    public Boolean insertclassdata(String name,String user_name,String instructor, String class_section, String class_location,String class_date, String class_repeat, String start_time, String end_time)
     {
         SQLiteDatabase DB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -156,21 +156,24 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("instructor", instructor);
         contentValues.put("class_section", class_section);
         contentValues.put("class_location", class_location);
-        contentValues.put("repeat", repeat);
+        contentValues.put("class_date",class_date);
+        contentValues.put("class_repeat", class_repeat);
         contentValues.put("start_time", start_time);
         contentValues.put("end_time", end_time);
         long result=DB.insert("Classdetails", null, contentValues);
         return result != -1;
     }
-    public Boolean updateclassdata(String name, String instructor, String class_section, String class_location, String repeat, String start_time, String end_time)
+    public Boolean updateclassdata(String name,String user_name,String instructor, String class_section, String class_location,String class_date, String class_repeat, String start_time, String end_time)
     {
         SQLiteDatabase DB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("class_name", name);
+        contentValues.put("user_name", user_name);
         contentValues.put("instructor", instructor);
         contentValues.put("class_section", class_section);
         contentValues.put("class_location", class_location);
-        contentValues.put("repeat", repeat);
+        contentValues.put("class_date",class_date);
+        contentValues.put("class_repeat", class_repeat);
         contentValues.put("start_time", start_time);
         contentValues.put("end_time", end_time);
 

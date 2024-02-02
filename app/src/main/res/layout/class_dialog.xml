@@ -39,27 +39,94 @@
             android:layout_height="wrap_content"
             android:hint="Class Location"
             android:textSize="20dp"/>
-        <EditText
-            android:id="@+id/dialog_repeatEdit"
-            android:layout_width="match_parent"
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Date of Class"
+        android:textSize="20dp"/>
+
+    <DatePicker
+        android:id="@+id/dialog_dateEdit"
+        android:layout_width="match_parent"
+        android:layout_height="89dp"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Repeat Days"
+        android:textSize="20dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:padding="5dp">
+        <CheckBox
+            android:id="@+id/monday"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Repeat Days?"
-            android:textSize="20dp"/>
-        <EditText
-            android:id="@+id/dialog_startTimeEdit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Start Time"
-            android:textSize="20dp"
-            android:inputType="time"
+            android:text="Mon."
             />
-        <EditText
-            android:id="@+id/dialog_endTimeEdit"
-            android:layout_width="match_parent"
+        <CheckBox
+            android:id="@+id/tuesday"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="End Time"
-            android:textSize="20dp"
-            android:inputType="time"/>
+            android:layout_toRightOf="@+id/monday"
+            android:text="Tues."
+            />
+        <CheckBox
+            android:id="@+id/wednesday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tuesday"
+            android:text="Wed."
+            />
+        <CheckBox
+            android:id="@+id/thursday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/wednesday"
+            android:text="Thurs."
+            />
+        <CheckBox
+            android:id="@+id/friday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/thursday"
+            android:text="Fri."
+            />
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start Time"
+        android:textSize="20dp"/>
+
+    <TimePicker
+        android:id="@+id/dialog_startTime"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:isScrollContainer="false"
+        android:timePickerMode="spinner" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="End Time"
+        android:textSize="20dp"/>
+
+    <TimePicker
+        android:id="@+id/dialog_endTime"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:isScrollContainer="false"
+        android:timePickerMode="spinner" />
+
 </LinearLayout>
     </RelativeLayout>
 
