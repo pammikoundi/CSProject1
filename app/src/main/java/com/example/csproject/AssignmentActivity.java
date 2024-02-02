@@ -17,12 +17,9 @@ import androidx.appcompat.app.AppCompatActivity;
 public class AssignmentActivity extends AppCompatActivity {
     DBHelper DB;
     Button updateButton, backButton, deleteButton;
-    AlertDialog dialog, updateDialog;
-
+    AlertDialog updateDialog;
     String assignment_name, assignment_type, assignment_class, assignment_location, due_date, progress, complete;
-
     TextView assignmentInfo;
-
     String current_assignment_name=null;
     String current_assignment_class=null;
     @Override
@@ -60,7 +57,7 @@ public class AssignmentActivity extends AppCompatActivity {
 
         buildUpdateDialog();
 
-        updateButton.setOnClickListener(v -> dialog.show());
+        updateButton.setOnClickListener(v -> updateDialog.show());
         backButton.setOnClickListener(v -> finish());
 
         deleteButton.setOnClickListener(v -> {

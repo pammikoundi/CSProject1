@@ -19,8 +19,8 @@ import java.util.Date;
 
 public class ToDoListActivity extends AppCompatActivity {
     DBHelper DB;
-    Button add, backButton;
-    AlertDialog dialog, updateDialog;
+    Button add, backButton, sortClass, sortDate;
+    AlertDialog dialog;
     LinearLayout layout;
 
     String className;
@@ -36,14 +36,21 @@ public class ToDoListActivity extends AppCompatActivity {
         add = findViewById(R.id.activity_add_assignment);
         backButton = findViewById(R.id.activity_back);
         layout = findViewById(R.id.activity_class_list_container);
+        sortClass = findViewById(R.id.activity_sort_assignment_class);
+        sortDate = findViewById(R.id.activity_sort_assignment_due_date);
 
         buildDialog();
 
         add.setOnClickListener(v -> dialog.show());
         backButton.setOnClickListener(v -> finish());
+        sortClass.setOnClickListener(v -> showCards("class_name"));
+        sortDate.setOnClickListener(v -> showCards("due_date"));
 
         DB = new DBHelper(this);
-        showCards();
+        showCards("due_date");
+
+
+
     }
 
     private void navigateAssignmentActivity(String assignment_name) {
@@ -53,24 +60,17 @@ public class ToDoListActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void showCards() {
+    private void showCards(String sortBy) {
         layout.removeAllViews();
         Cursor res;
-        if (className != null) {
-            res = DB.getassignmentdata(className);
-        } else {
-            res = DB.getallassignmentdata();
-        }
+
+            res = DB.getsortedassignmentdata(className,sortBy);
+
         if (res.getCount() == 0) {
             return;
         }
         while (res.moveToNext()) {
             String assignment_name = res.getString(0);
-            String assignment_type = res.getString(1);
-            String assignment_location = res.getString(3);
-            String due_date = res.getString(4);
-            String progress = res.getString(5);
-            String complete = res.getString(6);
 
             addCard(assignment_name);
         }
@@ -99,7 +99,7 @@ public class ToDoListActivity extends AppCompatActivity {
 
                     boolean checkInsertData = DB.insertassignmentdata(assignment_name, assignment_type, assignment_class, assignment_location, due_date, progress, complete);
                     if (checkInsertData) {
-                        showCards();
+                        showCards("due_date");
                         Toast.makeText(ToDoListActivity.this, "New Entry Inserted", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(ToDoListActivity.this, "This class may already exist", Toast.LENGTH_SHORT).show();
