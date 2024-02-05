@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         while (res.moveToNext()) {
-            String nameText = res.getString(0);
+            String nameText = res.getString(0).replaceFirst((userName+":"),"");
             String instructorText = res.getString(2);
             String classSectionText = res.getString(3);
             String classLocationText = res.getString(4);
@@ -221,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
                     String startMinFormat=String.format("%02d",startTime.getMinute());
                     String endMinFormat=String.format("%02d", endTime.getMinute());
 
-                    String nameText = name.getText().toString();
+                    String nameText = (userName+":"+name.getText().toString());
                     String instructorText = instructor.getText().toString();
                     String classSectionText = classSection.getText().toString();
                     String classLocationText = classLocation.getText().toString();
