@@ -244,16 +244,16 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor cursor;
         if (className==null) {
             if (orderBy.equals("class_name")) {
-                cursor = DB.rawQuery("Select * from Examdetails  ORDER BY assignment_class", null);
+                cursor = DB.rawQuery("Select * from Examdetails  ORDER BY exam_course", null);
             } else {
-                cursor = DB.rawQuery("Select * from Examdetails ORDER BY due_date", null);
+                cursor = DB.rawQuery("Select * from Examdetails ORDER BY exam_date", null);
             }
         }
         else{
             if (orderBy.equals("class_name")) {
-                cursor = DB.rawQuery("Select * from Assignmentdetails where assignment_class=?  ORDER BY assignment_class", new String[]{className});
+                cursor = DB.rawQuery("Select * from Examdetails where exam_course=?  ORDER BY exam_course", new String[]{className});
             } else {
-                cursor = DB.rawQuery("Select * from Assignmentdetails where assignment_class=?  ORDER BY due_date", new String[]{className});
+                cursor = DB.rawQuery("Select * from Examdetails where exam_course=?  ORDER BY exam_date", new String[]{className});
             }
         }
         return cursor;
@@ -267,11 +267,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return cursor;
     }
-
-    public Cursor getexamdata(String assignmentName)
+    public Cursor getexamdata(String examName)
     {
         SQLiteDatabase DB = this.getWritableDatabase();
-        Cursor cursor = DB.rawQuery("Select * from Examdetails where exam_name=?", new String[]{assignmentName});
+        Cursor cursor = DB.rawQuery("Select * from Examdetails where exam_name=?", new String[]{examName});
         return cursor;
     }
 

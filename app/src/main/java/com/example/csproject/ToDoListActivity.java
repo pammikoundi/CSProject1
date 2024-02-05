@@ -11,22 +11,21 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.checkbox.MaterialCheckBox;
-
-import java.util.Date;
+import java.sql.Time;
 
 public class ToDoListActivity extends AppCompatActivity {
     DBHelper DB;
-    Button add, backButton, sortClass, sortDate;
-    AlertDialog dialog;
+    Button addAssignment,addExam, backButton, sortClass, sortDate;
+    AlertDialog assignmentDialog,examDialog, examUpdateDialog;
     LinearLayout incompleteLayout, completeLayout;
 
-    String className;
+    String className, currentExamName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,16 +35,23 @@ public class ToDoListActivity extends AppCompatActivity {
         Intent intent = getIntent();
         className = intent.getStringExtra("className");
 
-        add = findViewById(R.id.activity_add_assignment);
+        addAssignment = findViewById(R.id.activity_add_assignment);
+        addExam = findViewById(R.id.activity_add_exam);
         backButton = findViewById(R.id.activity_back);
         incompleteLayout = findViewById(R.id.activity_assignment_incomplete_list_container);
         completeLayout = findViewById(R.id.activity_assignment_complete_list_container);
         sortClass = findViewById(R.id.activity_sort_assignment_class);
         sortDate = findViewById(R.id.activity_sort_assignment_due_date);
 
-        buildDialog();
+        currentExamName =null;
 
-        add.setOnClickListener(v -> dialog.show());
+        buildAssignmentDialog();
+        buildExamUpdateDialog();
+        buildExamDialog();
+
+        addAssignment.setOnClickListener(v -> assignmentDialog.show());
+        addExam.setOnClickListener(v -> examDialog.show());
+
         backButton.setOnClickListener(v -> finish());
         sortClass.setOnClickListener(v -> showCards("class_name"));
         sortDate.setOnClickListener(v -> showCards("due_date"));
@@ -54,21 +60,21 @@ public class ToDoListActivity extends AppCompatActivity {
         showCards("due_date");
 
     }
-
     private void navigateAssignmentActivity(String assignment_name) {
         Intent intent = new Intent(ToDoListActivity.this, AssignmentActivity.class);
         intent.putExtra("assignmentName", assignment_name);
         startActivity(intent);
-
     }
-
     private void showCards(String sortBy) {
         incompleteLayout.removeAllViews();
         completeLayout.removeAllViews();
         Cursor res;
         Cursor details;
+        Cursor exams;
         String isComplete="";
             res = DB.getsortedassignmentdata(className,sortBy);
+            exams = DB.getsortedexamdata(className,sortBy);
+
         if (res.getCount() == 0) {
             return;
         }
@@ -78,11 +84,23 @@ public class ToDoListActivity extends AppCompatActivity {
             while (details.moveToNext()) {
                 isComplete = details.getString(6);
             }
-            addCard(assignment_name, isComplete);
+            addAssignmentCard(assignment_name, isComplete);
+        }
+
+        if (exams.getCount() == 0) {
+            return;
+        }
+        while (exams.moveToNext()) {
+            String exam_name = exams.getString(0);
+            String exam_course = exams.getString(1);
+            String exam_date = exams.getString(2);
+            String exam_location = exams.getString(3);
+            String exam_time = exams.getString(4);
+            addExamCard(exam_name,exam_course,exam_date,exam_location,exam_time);
         }
     }
 
-    private void buildDialog() {
+    private void buildAssignmentDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View view = getLayoutInflater().inflate(R.layout.todo_dialog, null);
 
@@ -114,10 +132,94 @@ public class ToDoListActivity extends AppCompatActivity {
                 .setNegativeButton("Cancel", (dialog, which) -> {
                     // Handle cancel if needed
                 });
-        dialog = builder.create();
+        assignmentDialog = builder.create();
     }
 
-    private void addCard (String assignment_name, String isComplete) {
+    private void buildExamDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.exam_dialog, null);
+
+        final EditText examNameField = view.findViewById(R.id.dialog_examNameEdit);
+        final EditText examLocationField = view.findViewById(R.id.dialog_examLocationEdit);
+        final DatePicker dateField = view.findViewById(R.id.dialog_dateEdit);
+        final TimePicker examTimeField = view.findViewById(R.id.dialog_startTime);
+
+        builder.setView(view);
+        builder.setTitle("Enter Exam Information")
+                .setPositiveButton("OK", (dialog, which) -> {
+                    String startHourFormat=null;
+                    int startHour=0;
+                    if(examTimeField.getHour()<12){
+                        startHourFormat="AM";
+                        startHour=examTimeField.getHour();
+                    }
+                    else{
+                        startHourFormat="PM";
+                        startHour=examTimeField.getHour()-12;
+                    }
+                    String startMinFormat=String.format("%02d",examTimeField.getMinute());
+
+                    String exam_name = examNameField.getText().toString();
+                    String exam_course = className;
+                    String exam_location = examLocationField.getText().toString();
+                    String exam_date = (dateField.getMonth()+1)+"/"+dateField.getDayOfMonth()+"/"+dateField.getYear();
+                    String startTimeText = startHour+":"+startMinFormat+" "+startHourFormat;
+
+                    boolean checkInsertData = DB.insertexamdata(exam_name,exam_course,exam_date,exam_location,startTimeText);
+                    if (checkInsertData) {
+                        showCards("due_date");
+                        Toast.makeText(ToDoListActivity.this, "New Entry Inserted", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(ToDoListActivity.this, "This exam may already exist", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton("Cancel", (dialog, which) -> {
+                    // Handle cancel if needed
+                });
+        examDialog = builder.create();
+    }
+
+    private void buildExamUpdateDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.exam_update_dialog, null);
+        final EditText examLocationField = view.findViewById(R.id.dialog_examLocationEdit);
+        final DatePicker dateField = view.findViewById(R.id.dialog_dateEdit);
+        final TimePicker examTimeField = view.findViewById(R.id.dialog_startTime);
+
+        builder.setView(view);
+        builder.setTitle("Enter Exam Information")
+                .setPositiveButton("OK", (dialog, which) -> {
+                    String startHourFormat=null;
+                    int startHour=0;
+                    if(examTimeField.getHour()<12){
+                        startHourFormat="AM";
+                        startHour=examTimeField.getHour();
+                    }
+                    else{
+                        startHourFormat="PM";
+                        startHour=examTimeField.getHour()-12;
+                    }
+                    String startMinFormat=String.format("%02d",examTimeField.getMinute());
+                    String exam_course = className;
+                    String exam_location = examLocationField.getText().toString();
+                    String exam_date = (dateField.getMonth()+1)+"/"+dateField.getDayOfMonth()+"/"+dateField.getYear();
+                    String startTimeText = startHour+":"+startMinFormat+" "+startHourFormat;
+
+                    boolean checkInsertData = DB.updateexamdata(currentExamName,exam_course,exam_date,exam_location,startTimeText);
+                    if (checkInsertData) {
+                        Toast.makeText(ToDoListActivity.this, "New Entry Inserted", Toast.LENGTH_SHORT).show();
+                        showCards("due_date");
+                    } else {
+                        Toast.makeText(ToDoListActivity.this, "This exam may already exist", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton("Cancel", (dialog, which) -> {
+                    // Handle cancel if needed
+                });
+        examUpdateDialog = builder.create();
+    }
+
+    private void addAssignmentCard(String assignment_name, String isComplete) {
         final View view = getLayoutInflater().inflate(R.layout.todo_card,null);
         TextView nameView = view.findViewById(R.id.card_assignmentNameText);
         Button viewDetails = view.findViewById(R.id.card_btnviewDetails);
@@ -134,10 +236,8 @@ public class ToDoListActivity extends AppCompatActivity {
         {
             incompleteLayout.addView(view);
         }
-
         String cardText = String.format("Assignment Name: " + assignment_name);
         nameView.setText(cardText);
-
         deleteButton.setOnClickListener(v -> {
             boolean checkDeleteData = DB.deleteassignmentdata(assignment_name);
             if (checkDeleteData) {
@@ -147,13 +247,10 @@ public class ToDoListActivity extends AppCompatActivity {
                 Toast.makeText(ToDoListActivity.this, "Entry Not Deleted", Toast.LENGTH_SHORT).show();
             }
         });
-
-
         viewDetails.setOnClickListener(v -> {
                     navigateAssignmentActivity(assignment_name);
                 }
         );
-
         complete.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -179,6 +276,35 @@ public class ToDoListActivity extends AppCompatActivity {
                 showCards("due_date");
             }
         });
+    }
+    private void addExamCard(String exam_name, String exam_course, String exam_date, String exam_location, String exam_time) {
+        final View view = getLayoutInflater().inflate(R.layout.exam_card, null);
+        TextView nameView = view.findViewById(R.id.card_examNameText);
+        Button updateDetails = view.findViewById(R.id.card_btnUpdate);
+        CheckBox complete = view.findViewById(R.id.card_checkComplete);
 
+        String cardText = String.format("Exam Name: " + exam_name + "\nExam Course: " + exam_course + "\nExam Date: " + exam_date + "\nExam Location" + exam_location + "\nExam Time" + exam_time);
+        nameView.setText(cardText);
+
+        incompleteLayout.addView(view);
+
+        updateDetails.setOnClickListener(v -> {
+            currentExamName = exam_name;
+            buildExamUpdateDialog();
+            examUpdateDialog.show();
+        });
+
+        complete.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                boolean checkDeleteData = DB.deleteexamdata(exam_name);
+                if (checkDeleteData) {
+                    Toast.makeText(ToDoListActivity.this, "Entry Deleted", Toast.LENGTH_SHORT).show();
+                    showCards("due_date");
+                } else {
+                    Toast.makeText(ToDoListActivity.this, "Entry Not Deleted", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }

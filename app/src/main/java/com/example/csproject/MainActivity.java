@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = getIntent(); // gets the previously created intent
         userName = intent.getStringExtra("userName"); // will return "FirstKeyValue"
-        currentClassName =null;
+        currentClassName ="N/A";
 
         Button backButton = findViewById(R.id.back);
         addBtn = findViewById(R.id.activity_add_class);
@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         while (res.moveToNext()) {
-
             String nameText = res.getString(0);
             String instructorText = res.getString(2);
             String classSectionText = res.getString(3);

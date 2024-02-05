@@ -17,7 +17,20 @@
         android:layout_marginBottom="8dp"
         android:background="#F1D3B3"
         android:padding="10dp"
-        android:text="+"
+        android:text="+ Assignment"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/activity_add_exam"
+        android:layout_width="71dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="8dp"
+        android:background="#F1D3B3"
+        android:padding="10dp"
+        android:text="+ Exams"
         android:textSize="20dp" />
 
     <Button

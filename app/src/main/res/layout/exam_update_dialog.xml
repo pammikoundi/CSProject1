@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#000000"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FBF9F1"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Date of Exam"
+                android:textSize="20dp" />
+            <DatePicker
+                android:id="@+id/dialog_dateEdit"
+                android:layout_width="match_parent"
+                android:layout_height="89dp"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner" />
+
+            <EditText
+                android:id="@+id/dialog_examLocationEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Exam Location"
+                android:textSize="20dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Start Time"
+                android:textSize="20dp" />
+
+            <TimePicker
+                android:id="@+id/dialog_startTime"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:isScrollContainer="false"
+                android:timePickerMode="spinner" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>
