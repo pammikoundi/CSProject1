@@ -19,27 +19,43 @@
         android:text="+"
         android:textSize="20dp" />
 
-    <ScrollView
+    <EditText
+        android:id="@+id/activity_userNameEdit"
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="614dp"
-        android:layout_marginBottom="120dp"
-        android:background="#FBFADA"
-        android:scrollbars="none">
+        android:background="#BFD8AF"
+        android:fontFamily="monospace"
+        android:text="User Name\n"
+        android:textColor="@color/black"
+        android:layout_marginTop="200dp"
+        android:textFontWeight="1000"
+        android:textSize="30dp"
+        />
 
-        <LinearLayout
-            android:id="@+id/activity_user_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+    <EditText
+        android:id="@+id/activity_userPasswordEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp"
+        android:background="#BFD8AF"
+        android:fontFamily="monospace"
+        android:text="Password\n"
+        android:textColor="@color/black"
+        android:textFontWeight="1000"
+        android:textSize="30dp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#12372A"
-                android:fontFamily="sans-serif-smallcaps"
-                android:text="Select User:"
-                android:textColor="#FFFFFF"
-                android:textSize="50dp" />
-        </LinearLayout>
-    </ScrollView>
+    <Button
+        android:id="@+id/activity_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_userPasswordEdit"
+        android:textColor="@color/black"
+        android:padding="20dp"
+        android:background="#BFD8AF"
+        android:fontFamily="monospace"
+        android:textFontWeight="1000"
+        android:text="Submit"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        />
 </RelativeLayout>

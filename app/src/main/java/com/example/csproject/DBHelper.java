@@ -2,7 +2,7 @@ package com.example.csproject;
 
 /*
 *This file contains all methods relating to Databases.
-* It contains 3 tables userdetails, classdetails and assignmentdetails
+* It contains 4 tables userdetails, classdetails, examdetails and assignmentdetails
 * It contains the methods for each of the tables.
 *
 *
@@ -22,10 +22,10 @@ public class DBHelper extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(SQLiteDatabase DB) {
-        DB.execSQL("create Table Userdetails(user_name TEXT primary key)");
+        DB.execSQL("create Table Userdetails(user_name TEXT primary key,password TEXT)");
         DB.execSQL("create Table Classdetails(class_name TEXT primary key,user_name TEXT, instructor TEXT, class_section TEXT, class_location TEXT,class_date TEXT, class_repeat TEXT, start_time TEXT, end_time TEXT)");
         DB.execSQL("create Table Assignmentdetails(assignment_name TEXT primary key,assignment_type TEXT, assignment_class TEXT, assignment_location TEXT, due_date TEXT, progress TEXT, complete TEXT)");
-
+        DB.execSQL("create Table Examdetails(exam_name TEXT primary key,exam_course TEXT, exam_date TEXT, exam_location TEXT, exam_time TEXT)");
     }
     @Override
     public void onUpgrade(SQLiteDatabase DB, int i, int ii) {
@@ -36,11 +36,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
     //User Methods
 
-    public Boolean insertUserdata(String user_name)
+    public Boolean insertUserdata(String user_name, String password)
     {
         SQLiteDatabase DB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("user_name",user_name);
+        contentValues.put("password",password);
 
         long result=DB.insert("Userdetails", null, contentValues);
         return result != -1;
@@ -182,6 +183,98 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor cursor = DB.rawQuery("Select * from Assignmentdetails where assignment_name=?", new String[]{assignmentName});
         return cursor;
     }
+
+    //Exam Methods
+
+    public Boolean insertexamdata(String exam_name, String exam_course, String exam_date, String exam_location,String exam_time)
+    {
+        SQLiteDatabase DB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("exam_name",exam_name);
+        contentValues.put("exam_course",exam_course);
+        contentValues.put("exam_date",exam_date);
+        contentValues.put("exam_location",exam_location);
+
+        long result=DB.insert("Examdetails", null, contentValues);
+        return result != -1;
+    }
+    public Boolean updateexamdata(String exam_name, String exam_course, String exam_date, String exam_location,String exam_time)
+    {
+        SQLiteDatabase DB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("exam_name",exam_name);
+        contentValues.put("exam_course",exam_course);
+        contentValues.put("exam_date",exam_date);
+        contentValues.put("exam_location",exam_location);
+
+        Cursor cursor = DB.rawQuery("Select * from Examdetails where exam_name = ?", new String[]{exam_name});
+        if (cursor.getCount() > 0) {
+            long result = DB.update("Examdetails", contentValues, "exam_name=?", new String[]{exam_name});
+            return result != -1;
+        } else {
+            return false;
+        }
+    }
+    public Boolean deleteexamdata(String name)
+    {
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor cursor = DB.rawQuery("Select * from Examdetails where exam_name = ?", new String[]{name});
+        if (cursor.getCount() > 0) {
+            long result = DB.delete("Examdetails", "exam_name=?", new String[]{name});
+            return result != -1;
+        } else {
+            return false;
+        }
+    }
+    public Boolean deleteclassexamdata(String name)
+    {
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor cursor = DB.rawQuery("Select * from Examdetails where exam_course = ? ", new String[]{name});
+        if (cursor.getCount() > 0) {
+            long result = DB.delete("Examdetails", "exam_course=?", new String[]{name});
+            return result != -1;
+        } else {
+            return false;
+        }
+    }
+
+    public Cursor getsortedexamdata(String className, String orderBy)
+    {
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor cursor;
+        if (className==null) {
+            if (orderBy.equals("class_name")) {
+                cursor = DB.rawQuery("Select * from Examdetails  ORDER BY assignment_class", null);
+            } else {
+                cursor = DB.rawQuery("Select * from Examdetails ORDER BY due_date", null);
+            }
+        }
+        else{
+            if (orderBy.equals("class_name")) {
+                cursor = DB.rawQuery("Select * from Assignmentdetails where assignment_class=?  ORDER BY assignment_class", new String[]{className});
+            } else {
+                cursor = DB.rawQuery("Select * from Assignmentdetails where assignment_class=?  ORDER BY due_date", new String[]{className});
+            }
+        }
+        return cursor;
+    }
+
+    public Cursor getclassexamdata(String className)
+    {
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor cursor;
+        cursor = DB.rawQuery("Select * from Examdetails where exam_course=?", new String[]{className});
+
+        return cursor;
+    }
+
+    public Cursor getexamdata(String assignmentName)
+    {
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor cursor = DB.rawQuery("Select * from Examdetails where exam_name=?", new String[]{assignmentName});
+        return cursor;
+    }
+
 
     //Classes Methods
 
