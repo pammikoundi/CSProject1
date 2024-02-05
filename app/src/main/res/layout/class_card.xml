@@ -39,10 +39,9 @@
                     android:layout_width="127dp"
                     android:layout_height="59dp"
                     android:layout_alignEnd="@+id/card_classInfoText"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginTop="319dp"
                     android:layout_marginEnd="127dp"
                     android:background="#AAD7D9"
+                    android:layout_below="@+id/card_classInfoText"
                     android:text="Assignments/Tasks"
                     android:textSize="13dp" />
 
@@ -51,8 +50,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignEnd="@+id/card_classInfoText"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginTop="330dp"
+                    android:layout_below="@+id/card_classInfoText"
                     android:layout_marginEnd="20dp"
                     android:background="#AAD7D9"
                     android:text="Update"
@@ -62,10 +60,8 @@
                     android:id="@+id/card_btnDelete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/card_classInfoText"
-
+                    android:layout_below="@+id/card_classInfoText"
                     android:layout_alignEnd="@+id/card_classInfoText"
-                    android:layout_marginTop="330dp"
                     android:layout_marginEnd="278dp"
                     android:background="#AAD7D9"
                     android:text="Delete"
