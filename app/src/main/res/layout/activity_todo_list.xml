@@ -8,50 +8,24 @@
     tools:context=".ToDoListActivity">
 
     <Button
-        android:id="@+id/activity_add_assignment"
-        android:layout_width="71dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="8dp"
-        android:background="#F1D3B3"
-        android:padding="10dp"
-        android:text="+ Assignment"
-        android:textSize="20dp" />
-
-    <Button
-        android:id="@+id/activity_add_exam"
-        android:layout_width="71dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="8dp"
-        android:background="#F1D3B3"
-        android:padding="10dp"
-        android:text="+ Exams"
-        android:textSize="20dp" />
-
-    <Button
         android:id="@+id/activity_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="310dp"
-        android:layout_marginBottom="6dp"
-        android:background="#F1D3B3"
-        android:text="Back"
-        android:textSize="20dp" />
-
-    <Button
-        android:id="@+id/activity_sort_assignment_class"
-        android:layout_width="100dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="105dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="6dp"
+        android:background="#F1D3B3"
+        android:text="Back"
+        android:textSize="15dp" />
+
+    <Button
+        android:id="@+id/activity_sort_assignment_class"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/activity_back"
+        android:layout_marginStart="10dp"
+        android:layout_alignParentBottom="true"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="5dp"
@@ -61,17 +35,42 @@
 
     <Button
         android:id="@+id/activity_sort_assignment_due_date"
-        android:layout_width="97dp"
+        android:layout_width="65dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/activity_sort_assignment_class"
         android:layout_marginStart="10dp"
+        android:layout_alignParentBottom="true"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="99dp"
         android:layout_marginBottom="4dp"
         android:background="#F1D3B3"
         android:padding="10dp"
         android:text="Sort by due date" />
+
+    <Button
+        android:id="@+id/activity_add_exam"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/activity_sort_assignment_due_date"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="8dp"
+        android:background="#F1D3B3"
+        android:padding="10dp"
+        android:text="+ Exams"
+        android:textSize="13dp" />
+
+    <Button
+        android:id="@+id/activity_add_assignment"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/activity_add_exam"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="8dp"
+        android:background="#F1D3B3"
+        android:padding="10dp"
+        android:text="+ Assignment"
+        android:textSize="10dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
