@@ -68,36 +68,31 @@ public class ToDoListActivity extends AppCompatActivity {
     private void showCards(String sortBy) {
         incompleteLayout.removeAllViews();
         completeLayout.removeAllViews();
-        Cursor res;
-        Cursor details;
-        Cursor exams;
-        String isComplete="";
-            res = DB.getsortedassignmentdata(className,sortBy);
-            exams = DB.getsortedexamdata(className,sortBy);
 
-        if (res.getCount() == 0) {
-            return;
-        }
-        while (res.moveToNext()) {
-            String assignment_name = res.getString(0);
-            details = DB.getassignmentinfodata(assignment_name);
-            assignment_name=assignment_name.replaceFirst((className+":"),"");
-            while (details.moveToNext()) {
-                isComplete = details.getString(6);
+        Cursor res = DB.getsortedassignmentdata(className, sortBy);
+        Cursor exams = DB.getsortedexamdata(className, sortBy);
+
+        if (res.getCount() > 0) {
+            while (res.moveToNext()) {
+                String assignment_name = res.getString(0);
+                Cursor details = DB.getassignmentinfodata(assignment_name);
+                String isComplete = "Not Complete";
+                while (details.moveToNext()) {
+                    isComplete = details.getString(6);
+                }
+                addAssignmentCard(assignment_name, isComplete);
             }
-            addAssignmentCard(assignment_name, isComplete);
         }
 
-        if (exams.getCount() == 0) {
-            return;
-        }
-        while (exams.moveToNext()) {
-            String exam_name = exams.getString(0).replaceFirst((className+":"),"");
-            String exam_course = exams.getString(1);
-            String exam_date = exams.getString(2);
-            String exam_location = exams.getString(3);
-            String exam_time = exams.getString(4);
-            addExamCard(exam_name,exam_course,exam_date,exam_location,exam_time);
+        if (exams.getCount() > 0) {
+            while (exams.moveToNext()) {
+                String exam_name = exams.getString(0);
+                String exam_course = exams.getString(1);
+                String exam_date = exams.getString(2);
+                String exam_location = exams.getString(3);
+                String exam_time = exams.getString(4);
+                addExamCard(exam_name, exam_course, exam_date, exam_location, exam_time);
+            }
         }
     }
 
@@ -114,7 +109,7 @@ public class ToDoListActivity extends AppCompatActivity {
         builder.setView(view);
         builder.setTitle("Enter Assignment Information")
                 .setPositiveButton("OK", (dialog, which) -> {
-                    String assignment_name = (className+":"+assignmentNameField.getText().toString());
+                    String assignment_name = assignmentNameField.getText().toString();
                     String assignment_type = assignmentTypeField.getText().toString();
                     String assignment_class = className;
                     String assignment_location = assignmentLocationField.getText().toString();
@@ -160,7 +155,7 @@ public class ToDoListActivity extends AppCompatActivity {
                     }
                     String startMinFormat=String.format("%02d",examTimeField.getMinute());
 
-                    String exam_name = (className+":"+examNameField.getText().toString());
+                    String exam_name = examNameField.getText().toString();
                     String exam_course = className;
                     String exam_location = examLocationField.getText().toString();
                     String exam_date = (dateField.getMonth()+1)+"/"+dateField.getDayOfMonth()+"/"+dateField.getYear();
